@@ -4,13 +4,13 @@ import { Pen } from "lucide-react";
 const Hero115 = ({
   icon = <Pen className="size-6" />,
   heading = "Your Daily Writing Prompt",
-  description = "We hope your daily prompt will enable your creative writing practice. Create a personal writing collection or share with the community for feedback",
+  description = "Open up your mind. Visualise. Let it flow. Start typing... ",
   button = {
     text: "Discover Features",
     icon: <Pen className="ml-2 size-4" />,
     url: "https://www.shadcnblocks.com",
   },
-  trustText = "Trusted by 25.000+ Businesses Worldwide",
+  trustText = "Create a personal entry or share your writing with the others.",
   imageSrc = "https://shadcnblocks.com/images/block/placeholder-1.svg",
   imageAlt = "placeholder",
 }) => {
