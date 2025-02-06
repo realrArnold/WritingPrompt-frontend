@@ -61,7 +61,7 @@ const Login = ({ login, client }) => {
     <button 
       type="submit" 
       disabled={disabled} 
-      className={`w-full py-2 rounded-md text-white font-semibold ${disabled ? 'bg-[#DDA15E]' : 'bg-white hover:bg-white'}`}
+      className={`w-full py-2 rounded-md text-white font-semibold ${disabled ? 'bg-[#DDA15E]' : 'bg-blue-300 hover:bg-blue-400'}`}
     >
       {disabled ? "Signing in..." : "Sign in"}
     </button>
