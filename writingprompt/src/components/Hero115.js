@@ -11,8 +11,8 @@ const Hero115 = ({
     url: "https://www.shadcnblocks.com",
   },
   trustText = "Create a personal entry or share your writing with the others.",
-  imageSrc = "https://shadcnblocks.com/images/block/placeholder-1.svg",
-  imageAlt = "placeholder",
+  // imageSrc = "https://shadcnblocks.com/images/block/placeholder-1.svg",
+  // imageAlt = "placeholder",
 }) => {
   return (
     <section className="overflow-hidden py-32">
@@ -39,11 +39,11 @@ const Hero115 = ({
               )}
             </div>
           </div>
-          <img
+          {/* <img
             src={imageSrc}
             alt={imageAlt}
             className="mx-auto h-full max-h-[524px] w-full max-w-screen-lg rounded-2xl object-cover"
-          />
+          /> */}
         </div>
       </div>
     </section>

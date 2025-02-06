@@ -1,5 +1,5 @@
 import axios from "axios";
-const url = "http://localhost:3001/prompts/";
+const url = "http://localhost:3001/";
 
 
 //3001 because back end runs on 3001, front end runs on 3000
