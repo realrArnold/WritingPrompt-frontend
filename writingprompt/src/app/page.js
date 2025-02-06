@@ -2,7 +2,6 @@
 "use client";
 import Login from "@/components/Login";
 import { ApiClient } from "../../apiclient/client";
-// import { ApiClient } from "../apiclient/client";
 import Hero115 from "@/components/Hero115";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation"; // Import useRouter for navigation
