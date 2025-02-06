@@ -1,5 +1,4 @@
 
-
 "use client";
 import Login from "@/components/Login";
 import { ApiClient } from "../../apiclient/client";
@@ -7,7 +6,8 @@ import { ApiClient } from "../../apiclient/client";
 import Hero115 from "@/components/Hero115";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation"; // Import useRouter for navigation
-
+import React from "react";
+import WritingArea from "@/components/WritingArea.js";
 
 export default function Home() {
   const router = useRouter();
@@ -41,9 +41,9 @@ export default function Home() {
         {/* <div>Welcome back! You are logged in.</div>
         <button onClick={logout}>Logout</button> */}
         <Hero115
-        
           client={client}
         />
+        <WritingArea />
       </div>
     );
   }
