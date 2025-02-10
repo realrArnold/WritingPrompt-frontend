@@ -3,10 +3,12 @@ import { useState } from "react";
 import { useRouter } from "next/navigation"; // Import useRouter hook
 import { Pen } from "lucide-react";
 // import { FiDroplet } from 'react-icons/fi';
+const { ApiClient } = require("../../apiclient/client");
 
-const Login = ({ login, client }) => {
+const Login = () => {
   const [disabled, setDisabled] = useState(false);
   const router = useRouter(); // Initialize the router
+  const client = new ApiClient()
 
   const submitHandler = async (e) => {
     
@@ -15,8 +17,8 @@ const Login = ({ login, client }) => {
 
     try {
       const response = await client.login(e.target.username.value, e.target.password.value);
-      login(response.data.token);
-      
+        console.log(response)
+      router.push("/example")
       // Redirect to the dashboard after successful login
       //router.push("/dashboard");
     } catch (error) {
