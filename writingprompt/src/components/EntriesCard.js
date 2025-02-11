@@ -1,7 +1,18 @@
 //This is the order components will come in, reviews will likely have to be done somewhere else.
 //Perhaps we can dynamcially have a new page each time new writings are submitted and put the reviews on there
+const getCurrentDate = () =>{
+  const today = new Date();
+  return today.toISOString().split('T')[0];
+};
 
-const EntriesCard = { title, words, writngPrompt, genre, date, user };
+
+const EntriesCard = ({ title, words, writngPrompt, genre, date, user });
+const currentDate = getCurrentDate();
+
+if (date !== currentDate) {
+  return null;
+}
+
 return (
   <div className="py-6 flex justify-center">
     <div

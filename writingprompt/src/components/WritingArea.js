@@ -26,23 +26,23 @@ const WritingArea = ({ client }) => {
 
   return (
     <div
-      className="bg-white container mx-auto p-6 rounded-lg max-w-2xl "
+      className="bg-gray-100 container mx-auto p-6 rounded-lg shadow-lg max-w-md mt-10"
       id="addUserEntry"
     >
-      {/* <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
+      <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
         Write Here
-      </h2> */}
+      </h2>
       <form onSubmit={submitHandler} className="space-y-4">
         <div>
-          <label className="block text-gray-500 italic font-medium mb-1">
-            Write here...
+          <label className="block text-gray-700 font-medium mb-1">
+            Event Name
           </label>
           <textarea
             type="text"
             name="writingEntry"
             value={data.writingEntry}
             onChange={handleChange}
-            className="w-full px-4 py-4 border shadow-md border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 text-left align-top rezise"
+            className="w-full px-4 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 text-left align-top rezise"
           />
           <button
             type="submit"
