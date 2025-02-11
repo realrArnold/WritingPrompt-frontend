@@ -77,6 +77,8 @@ export default function Home() {
   const [token, setToken] = useState(null);
   const [isSignup, setIsSignup] = useState(true); // Default to signup page
 
+
+
   // remove
   const login = (newToken) => {
     localStorage.setItem("token", newToken);
