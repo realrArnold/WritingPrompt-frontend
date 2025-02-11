@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from "react";
 const WritingArea = ({ client }) => {
   const [data, setData] = useState({

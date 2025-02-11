@@ -61,4 +61,9 @@ async getWritings() {
   return data
 }
 
+async getWritingPrompts() {
+  const data = await this.authenticatedCall("get", `writingPrompts`, {})
+  return data
+}
+
 }
