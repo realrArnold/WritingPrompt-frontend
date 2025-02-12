@@ -18,7 +18,7 @@ const Login = () => {
     try {
       const response = await client.login(e.target.username.value, e.target.password.value);
         console.log(response)
-      router.push("/example")
+      router.push("/promptspage")
       // writing area & daily prompt etc
       // Redirect to the dashboard after successful login
       //router.push("/dashboard");
