@@ -42,13 +42,19 @@ const Signup = () => {
       setError(error.message || "Signup failed. Please try again.");
       setDisabled(false);
     }
+
   };
 
   return (
+    
     <div className="flex justify-center items-center min-h-screen bg-white">
+ <div className="text-center mb-6">
+          <h1 className="text-3xl font-bold text-green-700 mb-2">Welcome</h1>
+            <h2 className="text-xl text-gray-600 mb-6">It is free</h2>
+            </div>
       <form onSubmit={submitHandler} className="border-2 border-green-700 p-6 rounded-lg shadow-lg w-96">
         <div className="mb-4">
-          <label htmlFor="username" className="block text-lg font-medium mb-2">Choose a Username</label>
+          <label htmlFor="username" className="block text-lg font-medium mb-2">Create a Username</label>
           <input
             id="username"
             name="username"
@@ -77,6 +83,12 @@ const Signup = () => {
         >
           {disabled ? "Signing up..." : "Sign up"}
         </button>
+        <button
+        onClick={() => router.push("/login")}
+        className="w-full mt-4 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition"
+      >
+        Already have an account? Login
+      </button>
       </form>
     </div>
   );
