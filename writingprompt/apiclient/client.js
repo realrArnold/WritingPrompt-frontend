@@ -68,6 +68,7 @@ async getWritingPrompts() {
 
 async getRandomWritingPrompt() {
   const data = await this.authenticatedCall("get", `writingPrompts/random`, {})
+  return data
 }
 
 }

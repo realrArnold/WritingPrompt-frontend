@@ -29,7 +29,7 @@ const HeroPrompt = () => {
       try {
         const data = await client.getRandomWritingPrompt();
         console.log(data);
-        setWritingPrompts(data.data || []); // Ensure `data.data` exists
+        setWritingPrompts(data.data.words || []); // Ensure `data.data` exists
       } catch (err) {
         console.error("Failed to fetch writing prompts:", err);
         setError("Unable to load writing prompts.");
@@ -59,10 +59,9 @@ const HeroPrompt = () => {
             />
             <h2 className="mx-auto max-w-screen-lg text-center text-3xl font-medium md:text-6xl">
               {writingPrompts.length > 0 ? (
-                writingPrompts.map((item) => (
-                  <div key={item._id}>"{item.words}"</div>
-                ))
-              ) : error ? (
+                <div>{writingPrompts}</div>
+                )
+               : error ? (
                 <div className="text-red-500">{error}</div>
               ) : (
                 "Loading prompts..."
