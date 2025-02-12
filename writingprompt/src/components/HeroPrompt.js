@@ -27,7 +27,7 @@ const HeroPrompt = () => {
     const fetchWritingPrompts = async () => {
       setLoading(true);
       try {
-        const data = await client.getWritingPrompts();
+        const data = await client.getRandomWritingPrompt();
         console.log(data);
         setWritingPrompts(data.data || []); // Ensure `data.data` exists
       } catch (err) {
