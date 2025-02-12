@@ -65,7 +65,7 @@ const Signup = () => {
           />
         </div>
         <div className="mb-6">
-          <label htmlFor="password" className="block text-lg font-medium mb-2">Choose a Password</label>
+          <label htmlFor="password" className="block text-lg font-medium mb-2">Create a Password</label>
           <input
             id="password"
             name="password"
@@ -85,7 +85,7 @@ const Signup = () => {
         </button>
         <button
         onClick={() => router.push("/login")}
-        className="w-full mt-4 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition"
+        className="w-full mt-4 px-4 py-2 bg-green-400 text-white rounded-lg hover:bg-green-500 transition"
       >
         Already have an account? Login
       </button>

@@ -1,8 +1,6 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation"; // Import useRouter hook
-import { Pen } from "lucide-react";
-// import { FiDroplet } from 'react-icons/fi';
 const { ApiClient } = require("../../apiclient/client");
 
 const Login = () => {
@@ -19,9 +17,7 @@ const Login = () => {
       const response = await client.login(e.target.username.value, e.target.password.value);
         console.log(response)
       router.push("/promptspage")
-      // writing area & daily prompt etc
-      // Redirect to the dashboard after successful login
-      //router.push("/dashboard");
+      
     } catch (error) {
       console.error("Login failed:", error);
       setDisabled(false); // Enable the button again in case of error
@@ -61,14 +57,14 @@ const Login = () => {
     <button 
       type="submit" 
       disabled={disabled} 
-      className={`w-full py-2 rounded-md text-white font-semibold ${disabled ? 'bg-[#DDA15E]' : 'bg-blue-500 hover:bg-blue-400'}`}
+      className={`w-full py-2 rounded-md text-white font-semibold ${disabled ? 'bg-[#DDA15E]' : 'bg-blue-500 hover:bg-blue-600'}`}
     >
       {disabled ? "Signing in..." : "Sign in"}
     </button>
   
     <button
         onClick={() => router.push("/signup")}
-        className="w-full mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
+        className="w-full mt-4 px-4 py-2 bg-blue-300 text-white rounded-lg hover:bg-blue-400 transition"
       >
         Create an account
       </button>
