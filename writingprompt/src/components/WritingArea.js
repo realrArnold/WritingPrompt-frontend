@@ -1,9 +1,11 @@
+
 "use client"
 import React, { useState, useEffect } from "react";
 import { ApiClient } from "../../Apiclient/client";
 
 
 const WritingArea = ({ client, username, writingPrompt }) => {
+
   const [data, setData] = useState({
     // title: "",
     words: "",

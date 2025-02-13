@@ -1,3 +1,4 @@
+
 import axios from "axios";
 import Signup from "@/components/Signup";
 
@@ -10,3 +11,4 @@ const Page = () => {
 };
 
 export default Page;
+
