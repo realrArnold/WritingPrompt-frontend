@@ -1,52 +1,48 @@
 "use client";
 import React, { useState } from "react";
+import Confetti from "react-confetti";
 
 const WritingArea = ({ client, writingPrompt }) => {
   const [data, setData] = useState({
     words: "",
   });
-  const [successMessage, setSuccessMessage] = useState(""); // State for success message
+  const [successMessage, setSuccessMessage] = useState("");
+  const [showConfetti, setShowConfetti] = useState(false);
 
   const handleChange = (e) => {
     const { value } = e.target;
     setData((prevData) => ({
       ...prevData,
-      words: value, // Update the 'words' field when the textarea changes
+      words: value,
     }));
   };
 
-  // Handle form submission
   const submitHandler = async (e) => {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault();
 
     const submissionData = {
       ...data,
-      writingPrompt, // From parent component
+      writingPrompt,
     };
 
-    console.log("Form submitted with data:", submissionData);
+    try {
+      const response = await client.addWriting(submissionData);
 
-    const response = await client.addWriting(submissionData);
-    console.log(response);
-    
+      if (response.status === 201) {
+        setSuccessMessage("Your writing has been successfully submitted!");
+        setData({ words: "" });
+        setShowConfetti(true);
 
-    if (response.status === 201) {
-      console.log("Writing added successfully");
-      setSuccessMessage("Your writing has been successfully submitted!"); // Set success message
-      setData({ words: "" }); // Optionally clear the form
-
-      // Clear success message and show textarea after a delay
-      setTimeout(() => {
-        setSuccessMessage("");
-      }, 5000); // 5 seconds delay
-    } else {
-      console.log("Error adding writing");
-      setSuccessMessage("An error occurred. Please try again."); // Set error message
-
-      // Clear error message after a delay
-      setTimeout(() => {
-        setSuccessMessage("");
-      }, 5000);
+        setTimeout(() => {
+          setSuccessMessage("");
+          setShowConfetti(false);
+        }, 5000);
+      } else {
+        setSuccessMessage("An error occurred. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error during submission:", error);
+      setSuccessMessage("An error occurred. Please try again.");
     }
   };
 
@@ -55,6 +51,13 @@ const WritingArea = ({ client, writingPrompt }) => {
       className="bg-white container mx-auto p-6 rounded-lg max-w-2xl"
       id="addUserWriting"
     >
+      {showConfetti && (
+        <Confetti
+          width={window.innerWidth}
+          height={window.innerHeight}
+          colors={["#FF5733", "#33FF57", "#3357FF", "#F7DC6F", "#D2B4DE", "#73C6B6"]} // Custom colors
+        />
+      )}
       <form onSubmit={submitHandler} className="space-y-4">
         <div>
           <label className="block text-gray-500 italic font-medium mb-1">
