@@ -81,7 +81,7 @@ const HeroPrompt = ({ setWritingPrompt}) => { // Destructure setWritingPrompt he
             />
             <h2 className="mx-auto max-w-screen-lg text-center text-3xl font-medium md:text-6xl">
               {writingPrompts.length > 0 ? (
-                <div>{writingPrompts}</div>
+                <div>{`"${writingPrompts}"`}</div>
                 )
                : error ? (
                 <div className="text-red-500">{error}</div>
