@@ -30,7 +30,6 @@ const submitHandler = async (e) => {
   // Include username and writingPrompt in the submission
   const submissionData = {
     ...data,
-    username, // From parent component
     writingPrompt, // From parent component
   };
 

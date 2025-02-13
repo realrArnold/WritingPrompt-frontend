@@ -71,13 +71,13 @@ async getRandomWritingPrompt() {
   return data
 }
 
-addWriting(data) {
+async addWriting(data) {
   return await this.authenticatedCall("post", `${url}/writings/add`, {
-    title: data.title,
+    // title: data.title,
     words: data.words,
-    writingPrompt:: data.writingPrompt,
-    date: data.newdate(),
-    writtenBy: data.username,
+    writingPrompt: data.writingPrompt,
+    // date: data.newdate(),
+    // writtenBy: data.username,
   });
 }
 
