@@ -10,6 +10,26 @@ export class ApiClient {
     this.logoutHandler = logoutHandler;
   }
 
+  // async authenticatedCall(method, endpoint, data) {
+  //   console.log(`${url}${endpoint}`);
+  //   return axios({
+  //     method,
+  //     url: `${url}${endpoint.startsWith("/") ? endpoint : `/${endpoint}`}`,  // Adjusted this line to account for if url ends with / or not.
+  //     withCredentials: true,  // This is crucial
+  //     headers: {
+  //       "Accept": "application/json",
+  //     },
+  //     data,
+  //   }).catch((error) => {
+  //     if (error.response?.status === 403) {
+  //       return Promise.reject();
+  //     } else {
+  //       throw error;
+  //     }
+  //   });
+  // }
+  
+
   async authenticatedCall(method, endpoint, data) {
     console.log(`${url}${endpoint}`)
     return axios({
@@ -29,9 +49,6 @@ export class ApiClient {
     });
 }
 
-//   getPlants() {
-//     return this.authenticatedCall("get", `${url}currentuser`)
-//   }
 
 
   async createUser(data) {
@@ -72,7 +89,7 @@ async getRandomWritingPrompt() {
 }
 
 async addWriting(data) {
-  return await this.authenticatedCall("post", `${url}/writings/add`, {
+  return await this.authenticatedCall("post", `writings/add`, {
     // title: data.title,
     words: data.words,
     writingPrompt: data.writingPrompt,

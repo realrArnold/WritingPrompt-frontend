@@ -3,7 +3,7 @@ import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { ApiClient } from "../../apiclient/client";
 
-const HeroPrompt = () => {
+const HeroPrompt = ({ setWritingPrompt}) => { // Destructure setWritingPrompt here
   const description = "Open up your mind. Visualize. Let it flow. Start typing...";
   const trustText = "Create a personal entry or share your writing with others.";
   const client = new ApiClient();
@@ -12,7 +12,7 @@ const HeroPrompt = () => {
   const [writingPrompts, setWritingPrompts] = useState([]);
   const [error, setError] = useState(null);
   //do we want to display today's date?
-  const dateToday = new Date().toISOString().split("T")[0];
+  // const dateToday = new Date().toISOString().split("T")[0];
   const [loading, setLoading] = useState(false);
 
 

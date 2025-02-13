@@ -1,58 +1,48 @@
+"use client";
+import React, { useState } from "react";
 
-"use client"
-import React, { useState, useEffect } from "react";
-import { ApiClient } from "../../Apiclient/client";
-
-
-const WritingArea = ({ client, username, writingPrompt }) => {
-
+const WritingArea = ({ client, writingPrompt }) => {
   const [data, setData] = useState({
     // title: "",
     words: "",
     // genre: ""
-    date: newdate().toIsoString(),
-    // writtenBy: ""
-    // Reviews: ""
-    // Upvotes: 0
   });
 
- // Handle input changes for multiple fields
- const handleChange = (e) => {
-  const { name, value } = e.target;
-  setData((prevData) => ({
-    ...prevData,
-    [name]: value,
-  }));
-};
-
-//handle form submission
-const submitHandler = async (e) => {
-  e.preventDefault(); // Prevent default form submission
-
-  // Include username and writingPrompt in the submission
-  const submissionData = {
-    ...data,
-    writingPrompt, // From parent component
+  const handleChange = (e) => {
+    const { value } = e.target;
+    setData((prevData) => ({
+      ...prevData,
+      words: value, // Update the 'words' field when the textarea changes
+    }));
   };
 
-  console.log("Form submitted with data:", submissionData);
+  //handle form submission
+  const submitHandler = async (e) => {
+    e.preventDefault(); // Prevent default form submission
 
-  const response = await client.addWriting(submissionData);
-  console.log(response);
+    // Include username and writingPrompt in the submission
+    const submissionData = {
+      ...data,
+      writingPrompt, // From parent component
+    };
 
-  if (response.data.status === "200") {
-    console.log("Writing added successfully");
-  } else {
-    console.log("Error adding writing");
-  }
-};
+    console.log("Form submitted with data:", submissionData);
+
+    const response = await client.addWriting(submissionData);
+    console.log(response);
+
+    if (response.data.status === "201") {
+      console.log("Writing added successfully");
+    } else {
+      console.log("Error adding writing");
+    }
+  };
 
   return (
     <div
       className="bg-white container mx-auto p-6 rounded-lg max-w-2xl "
       id="addUserWriting"
     >
-    
       <form onSubmit={submitHandler} className="space-y-4">
         <div>
           <label className="block text-gray-500 italic font-medium mb-1">
@@ -61,8 +51,7 @@ const submitHandler = async (e) => {
           <textarea
             type="text"
             name="writingEntry"
-            value={data.words} 
-            
+            value={data.words}
             onChange={handleChange}
             className="w-full px-4 py-4 border shadow-md border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 text-left align-top rezise"
           />
