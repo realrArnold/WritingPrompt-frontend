@@ -1,40 +1,58 @@
 
-"use client";
+"use client"
+import React, { useState, useEffect } from "react";
+import { ApiClient } from "../../Apiclient/client";
 
-import React, { useState } from "react";
-const WritingArea = ({ client }) => {
+
+const WritingArea = ({ client, username, writingPrompt }) => {
+
   const [data, setData] = useState({
-    writingEntry: "",
+    // title: "",
+    words: "",
+    // genre: ""
+    date: newdate().toIsoString(),
+    // writtenBy: ""
+    // Reviews: ""
+    // Upvotes: 0
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setData({
-      ...data,
-      [name]: value,
-    });
+ // Handle input changes for multiple fields
+ const handleChange = (e) => {
+  const { name, value } = e.target;
+  setData((prevData) => ({
+    ...prevData,
+    [name]: value,
+  }));
+};
+
+//handle form submission
+const submitHandler = async (e) => {
+  e.preventDefault(); // Prevent default form submission
+
+  // Include username and writingPrompt in the submission
+  const submissionData = {
+    ...data,
+    writingPrompt, // From parent component
   };
 
-  const submitHandler = async (e) => {
-    console.log("Form submiited with data", data);
+  console.log("Form submitted with data:", submissionData);
 
-    const response = await client.addEntry(data);
-    console.log(response);
-    if (response.data.status === "200") {
-      console.log("Event added successfully");
-    } else {
-      console.log("Error adding event");
-    }
-  };
+  const response = await client.addWriting(submissionData);
+  console.log(response);
+
+  if (response.data.status === "200") {
+    console.log("Writing added successfully");
+  } else {
+    console.log("Error adding writing");
+  }
+};
 
   return (
     <div
       className="bg-white container mx-auto p-6 rounded-lg max-w-2xl "
-      id="addUserEntry"
+      id="addUserWriting"
     >
-      {/* <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
-        Write Here
-      </h2> */}
+    
       <form onSubmit={submitHandler} className="space-y-4">
         <div>
           <label className="block text-gray-500 italic font-medium mb-1">
@@ -43,7 +61,8 @@ const WritingArea = ({ client }) => {
           <textarea
             type="text"
             name="writingEntry"
-            value={data.writingEntry}
+            value={data.words} 
+            
             onChange={handleChange}
             className="w-full px-4 py-4 border shadow-md border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 text-left align-top rezise"
           />

@@ -7,6 +7,8 @@ const HeroPrompt = () => {
   const description = "Open up your mind. Visualize. Let it flow. Start typing...";
   const trustText = "Create a personal entry or share your writing with others.";
   const client = new ApiClient();
+  //setWritingPrompts prop has been passed from Home() on page.js. 
+  // This allows update of parent writingPrompt state using setWritingPrompt.
   const [writingPrompts, setWritingPrompts] = useState([]);
   const [error, setError] = useState(null);
   //do we want to display today's date?
@@ -21,25 +23,45 @@ const HeroPrompt = () => {
   //   settDateToday(dateToday);
   // }
 
-  
-
   useEffect(() => {
     const fetchWritingPrompts = async () => {
       setLoading(true);
+      
       try {
         const data = await client.getRandomWritingPrompt();
         console.log(data);
-        setWritingPrompts(data.data.words || []); // Ensure `data.data` exists
+        const prompt = data.data.words || "No prompt available.";
+        
+        setWritingPrompts(prompt);
+        setWritingPrompt(prompt); // Update the parent component's state
       } catch (err) {
         console.error("Failed to fetch writing prompts:", err);
         setError("Unable to load writing prompts.");
-      } 
-      finally {
+      } finally {
         setLoading(false);
       }
     };
     fetchWritingPrompts();
-  }, []);
+  }, [setWritingPrompt]); // Dependency ensures this effect runs when the callback is provided
+
+
+  // useEffect(() => {
+  //   const fetchWritingPrompts = async () => {
+  //     setLoading(true);
+  //     try {
+  //       const data = await client.getRandomWritingPrompt();
+  //       console.log(data);
+  //       setWritingPrompts(data.data.words || []); 
+  //     } catch (err) {
+  //       console.error("Failed to fetch writing prompts:", err);
+  //       setError("Unable to load writing prompts.");
+  //     } 
+  //     finally {
+  //       setLoading(false);
+  //     }
+  //   };
+  //   fetchWritingPrompts();
+  // }, []);
 
   if (loading) {
     return <div>Loading...</div>;
