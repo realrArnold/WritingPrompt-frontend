@@ -58,9 +58,8 @@ const HeroPrompt = () => {
               alt="Quill pen drawing a line"
             />
 
-<h2 className="mx-auto w-3/4 text-center text-3xl font-medium md:text-6xl">
 
-            {/* <h2 className="mx-auto max-w-screen-lg text-center text-3xl font-medium md:text-6xl"> */}
+            <h2 className="mx-auto max-w-screen-lg text-center text-3xl font-medium md:text-6xl">
               {writingPrompts.length > 0 ? (
                 <div>{writingPrompts}</div>
                 )
