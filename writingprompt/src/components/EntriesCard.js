@@ -25,7 +25,7 @@ return (
           <span className="font-medium">by</span> {user}
         </p>
         <p className="text-gray-500 text-sm">
-          <span className="font-medium">Upovtes</span> {upvotes}
+          {/* <span className="font-medium">Upovtes</span> {upvotes} */}
         </p>
       </div>
     </div>

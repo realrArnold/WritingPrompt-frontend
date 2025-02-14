@@ -17,19 +17,21 @@ const Page = ({ client }) => {
   useEffect(() => {
     fetchData();
   }, []);
-
+return (
   <div>
-    {Writings?.map((writing) => (
-      <EntriesCard
-        key={writing.id}
-        title={writing.title}
-        words={writing.words}
-        writingPrompt={writing.prompt}
-        genre={writing.genre}
-        date={writing.date}
-      />
-    ))}
-  </div>;
+    {Writings?.map((writing) => {
+      return (
+        <EntriesCard
+          key={writing._id}
+          title={writing.title}
+          words={writing.words}
+          writingPrompt={writing.prompt}
+          genre={writing.genre}
+          date={writing.date}
+        />
+      );
+    })}
+  </div>)
 };
 
 export default Page;

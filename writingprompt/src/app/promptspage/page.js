@@ -36,7 +36,9 @@ const Home = () => {
         writingPrompt={writingPrompt}
       />
 <div>
-        <EntriesWrapper/>
+        <EntriesWrapper
+        client={client}/>
+
       </div>
     </div>
   );
