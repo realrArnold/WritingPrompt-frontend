@@ -1,6 +1,8 @@
 
 "use client"
 import HeroPrompt from "@/components/HeroPrompt";
+
+import Nav from "@/components/Nav";
 import WritingArea from "@/components/WritingArea.js";
 import React, { useState } from "react";
 import { ApiClient } from '../../../apiclient/client'
@@ -23,6 +25,8 @@ const Home = () => {
 
   return (
     <div>
+      <Nav />
+
       {/* Pass setWritingPrompt to HeroPrompt */}
       <HeroPrompt setWritingPrompt={setWritingPrompt} />
       
@@ -31,6 +35,7 @@ const Home = () => {
         client={client}
         writingPrompt={writingPrompt}
       />
+
     </div>
   );
 };
