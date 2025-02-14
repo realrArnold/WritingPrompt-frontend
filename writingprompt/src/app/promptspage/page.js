@@ -1,7 +1,7 @@
 
 "use client"
 import HeroPrompt from "@/components/HeroPrompt";
-
+import EntriesWrapper from "@/components/EntriesWrapper"
 import Nav from "@/components/Nav";
 import WritingArea from "@/components/WritingArea.js";
 import React, { useState } from "react";
@@ -35,7 +35,9 @@ const Home = () => {
         client={client}
         writingPrompt={writingPrompt}
       />
-
+<div>
+        <EntriesWrapper/>
+      </div>
     </div>
   );
 };
