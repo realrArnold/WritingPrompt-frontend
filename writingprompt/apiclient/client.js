@@ -29,9 +29,9 @@ export class ApiClient {
     });
 }
 
-//   getPlants() {
-//     return this.authenticatedCall("get", `${url}currentuser`)
-//   }
+  getWritings() {
+    return this.authenticatedCall("get", `${url}currentuser`)
+  }
 
 
   async createUser(data) {
@@ -56,10 +56,10 @@ async login(username, password) {
   });
 }
 
-async getWritings() {
-  const data = await this.authenticatedCall("get", `writings`, {})
-  return data
-}
+// async getWritings() {
+//   const data = await this.authenticatedCall("get", `writings`, {})
+//   return data
+// }
 
 async getWritingPrompts() {
   const data = await this.authenticatedCall("get", `writingPrompts`, {})

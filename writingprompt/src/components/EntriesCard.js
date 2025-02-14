@@ -1,7 +1,7 @@
 //This is the order components will come in, reviews will likely have to be done somewhere else.
 //Perhaps we can dynamcially have a new page each time new writings are submitted and put the reviews on there
 
-const EntriesCard = { title, words, writngPrompt, genre, date, user };
+const EntriesCard = ({ title, words, writngPrompt, genre, date, user }) =>{
 return (
   <div className="py-6 flex justify-center">
     <div
@@ -10,7 +10,7 @@ return (
     >
       <div className="flex flex-col gap-2">
         <h3 className="text-xl font-semibold text-gray-800 Underline">
-          {writingPrompt}
+          {writngPrompt}
         </h3>
         <h4 className="text-l font-semibold text-gray-800 underline">
           {title || ""}
@@ -28,5 +28,6 @@ return (
     </div>
   </div>
 );
+};
 
 export default EntriesCard;
