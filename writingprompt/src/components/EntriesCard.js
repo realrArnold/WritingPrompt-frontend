@@ -1,7 +1,10 @@
 //This is the order components will come in, reviews will likely have to be done somewhere else.
 //Perhaps we can dynamcially have a new page each time new writings are submitted and put the reviews on there
 
-const EntriesCard = { title, words, writngPrompt, genre, date, user };
+import { useState, useEffect } from "react";
+import React from 'react'
+
+export default function EntriesCard({ title, words, writingPrompt, genre, date, user }) {
 return (
   <div className="py-6 flex justify-center">
     <div
@@ -27,6 +30,6 @@ return (
       </div>
     </div>
   </div>
-);
+  )
+}
 
-export default EntriesCard;
