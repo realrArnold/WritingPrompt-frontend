@@ -41,10 +41,11 @@ export default function Page() {
             </Breadcrumb>
           </div>
         </header>
-        <div className="w-full gap-4 p-4 pt-0">
+        <div className="w-full gap-4 p-6 pt-0">
           <ChartComponent/>
         </div>
-        <div className="flex mx-auto p-4 pt-0">
+        <div className="w-full p-4 pt-0">
+          <label className="text-lg p-6 font-semibold tracking-tight">Recent Writings</label>
         <WritingCarousel/>
         </div>
       </SidebarInset>
