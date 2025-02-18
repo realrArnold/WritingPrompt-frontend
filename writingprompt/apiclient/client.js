@@ -98,13 +98,10 @@ async addWriting(data) {
   });
 }
 
-// //function to get user data for display on user dashboard
-// async getUser(data) {
-//   return await this.authenticatedCall("get", `user/id`, {
-//     name: data.username,
-//     email: data.email,
-//     avatar: data.avatar
-//   });
-// }
+//function to get user writings for display on user dashboard
+async getUserWritings(user_Id) {
+  const data = await this.authenticatedCall("get", `/users/${user_Id}/writings`, {});
+  return data;
+}
 
 }
