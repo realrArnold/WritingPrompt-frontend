@@ -17,7 +17,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { ChartComponent } from "@/components/UserChart";
-import { WritingCarousel } from "@/components/WritingCarousel";
+import WritingCarousel from "@/components/WritingCarousel";
 
 const Dashboard = () => {
   const client = new ApiClient(); // Initialize  client
@@ -46,12 +46,11 @@ const Dashboard = () => {
         <div className="w-full gap-4 p-6 pt-0">
           <ChartComponent />
         </div>
-        <div className="w-full p-4 pt-0">
-          <label className="text-lg text-center font-semibold tracking-tight">
+        <div className="w-full pt-0 pb-2 flex flex-col items-center">
+          <label className="text-lg text-center font-semibold tracking-tight pb-2">
             Recent Writings
           </label>
-          <WritingCarousel
-          client={client} />
+          <WritingCarousel client={client} />
         </div>
       </SidebarInset>
     </SidebarProvider>

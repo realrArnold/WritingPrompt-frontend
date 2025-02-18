@@ -60,17 +60,34 @@ export class ApiClient {
   }
 
 
-//   deletePlant(id) {
-//     return this.authenticatedCall("delete", `${url}${id}`);
-//   }
+// async login(username, password) {
+//   return await axios({
+//       method: "post",
+//       url: `${url}auth`,
+//       withCredentials: true,  // Add this line
+//       data: { username, password }
+//   });
+// }
 
 async login(username, password) {
-  return await axios({
+  try {
+    const response = await axios({
       method: "post",
       url: `${url}auth`,
-      withCredentials: true,  // Add this line
-      data: { username, password }
-  });
+      withCredentials: true,
+      data: { username, password },
+    });
+
+   
+    // Store token and user ID in localStorage
+    localStorage.setItem("authToken", response.data.token);
+    localStorage.setItem("userId", response.data.user.id); // Assuming the backend includes a `user` object with an `id`
+
+    return response.data; // Return the response for further handling if needed
+  } catch (error) {
+    console.error("Login failed:", error);
+    throw error;
+  }
 }
 
 async getWritings() {
@@ -98,10 +115,24 @@ async addWriting(data) {
   });
 }
 
-//function to get user writings for display on user dashboard
-async getUserWritings(user_Id) {
-  const data = await this.authenticatedCall("get", `/users/${user_Id}/writings`, {});
-  return data;
+// //function to get user writings for display on user dashboard
+// async getUserWritings(user_Id) {
+//   const data = await this.authenticatedCall("get", `/users/${user_Id}/writings`, {});
+//   return data;
+// }
+
+  // Function to get user writings for display on user dashboard
+  async getUserWritings() {
+  
+    const userId = localStorage.getItem("userId"); // Retrieve user ID from localStorage
+
+    console.log("get user items", userId)
+    if (!userId) {
+      throw new Error("User ID is missing! Please ensure you are logged in.");
+    }
+
+    const data = await this.authenticatedCall("get", `users/${userId}/writings`, {});
+    return data;
+  }
 }
 
-}
