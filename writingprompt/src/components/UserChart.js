@@ -17,29 +17,42 @@ import {
 } from "@/components/ui/chart";
 
 const chartData = [
-  { date: "2024-04-01", desktop: 222, mobile: 150 },
-  { date: "2024-04-02", desktop: 97, mobile: 180 },
-  // Additional data here...
+  { date: "2023-01-01", monthlyCount: 12, yearlyCount: 150 },
+  { date: "2023-02-01", monthlyCount: 15, yearlyCount: 165 },
+  { date: "2023-03-01", monthlyCount: 18, yearlyCount: 183 },
+  { date: "2023-04-01", monthlyCount: 14, yearlyCount: 197 },
+  { date: "2023-05-01", monthlyCount: 22, yearlyCount: 219 },
+  { date: "2023-06-01", monthlyCount: 19, yearlyCount: 238 },
+  { date: "2023-07-01", monthlyCount: 23, yearlyCount: 261 },
+  { date: "2023-08-01", monthlyCount: 25, yearlyCount: 286 },
+  { date: "2023-09-01", monthlyCount: 20, yearlyCount: 306 },
+  { date: "2023-10-01", monthlyCount: 18, yearlyCount: 324 },
+  { date: "2023-11-01", monthlyCount: 16, yearlyCount: 340 },
+  { date: "2023-12-01", monthlyCount: 14, yearlyCount: 354 },
+  { date: "2024-01-01", monthlyCount: 15, yearlyCount: 15 },
+  { date: "2024-02-01", monthlyCount: 18, yearlyCount: 33 },
+  { date: "2024-03-01", monthlyCount: 21, yearlyCount: 54 },
+  { date: "2024-04-01", monthlyCount: 19, yearlyCount: 73 },
 ];
 
 const chartConfig = {
-  desktop: {
+  monthlyCount: {
     label: "Month",
     color: "hsl(var(--chart-1))",
   },
-  mobile: {
+  yearlyCount: {
     label: "Year",
     color: "hsl(var(--chart-2))",
   },
 };
 
 export function ChartComponent() {
-  const [activeChart, setActiveChart] = useState("desktop");
+  const [activeChart, setActiveChart] = useState("monthlyCount");
 
   const total = useMemo(() => {
     return {
-      desktop: chartData.reduce((acc, curr) => acc + curr.desktop, 0),
-      mobile: chartData.reduce((acc, curr) => acc + curr.mobile, 0),
+      monthlyCount: chartData.reduce((acc, curr) => acc + curr.monthlyCount, 0),
+      yearlyCount: chartData[chartData.length - 1]?.yearlyCount || 0,
     };
   }, []);
 
@@ -48,11 +61,10 @@ export function ChartComponent() {
       <CardHeader className="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
         <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
           <CardTitle>Writing Activity</CardTitle>
-          {/* What are counting - words or entries? */}
           <CardDescription>Showing how many times you have written</CardDescription>
         </div>
         <div className="flex">
-          {["desktop", "mobile"].map((chart) => (
+          {Object.keys(chartConfig).map((chart) => (
             <button
               key={chart}
               data-active={activeChart === chart}
@@ -63,7 +75,9 @@ export function ChartComponent() {
                 {chartConfig[chart].label}
               </span>
               <span className="text-lg font-bold leading-none sm:text-3xl">
-                {total[chart].toLocaleString()}
+                {chart === "monthlyCount" 
+                  ? total.monthlyCount.toLocaleString() 
+                  : total.yearlyCount.toLocaleString()}
               </span>
             </button>
           ))}
@@ -91,9 +105,9 @@ export function ChartComponent() {
               minTickGap={32}
               tickFormatter={(value) => {
                 const date = new Date(value);
-                return date.toLocaleDateString("en-US", {
-                  month: "short",
+                return date.toLocaleDateString("en-GB", {
                   day: "numeric",
+                  month: "short",
                 });
               }}
             />
@@ -101,11 +115,11 @@ export function ChartComponent() {
               content={
                 <ChartTooltipContent
                   className="w-[150px]"
-                  nameKey="views"
+                  nameKey={activeChart === "monthlyCount" ? "Monthly Writings" : "Yearly Writings"}
                   labelFormatter={(value) => {
-                    return new Date(value).toLocaleDateString("en-US", {
-                      month: "short",
+                    return new Date(value).toLocaleDateString("en-GB", {
                       day: "numeric",
+                      month: "short",
                       year: "numeric",
                     });
                   }}

@@ -78,12 +78,15 @@ export function AppSidebar({ ...props }) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <div className=" flex mx-auto pt-4 pb-4">
-        <Image
-          src="/images/quill.svg" height={30}
-          width={30}
-          alt="Quill pen drawing a line"
-        />
+        <div className="flex mx-auto pt-4 pb-4">
+          <a href="/promptspage">
+            <Image
+              src="/images/quill.svg"
+              height={30}
+              width={30}
+              alt="Quill pen drawing a line"
+            />
+          </a>
         </div>
       </SidebarHeader>
       <SidebarContent>
