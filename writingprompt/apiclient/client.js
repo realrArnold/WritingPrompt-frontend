@@ -98,4 +98,13 @@ async addWriting(data) {
   });
 }
 
+// //function to get user data for display on user dashboard
+// async getUser(data) {
+//   return await this.authenticatedCall("get", `user/id`, {
+//     name: data.username,
+//     email: data.email,
+//     avatar: data.avatar
+//   });
+// }
+
 }

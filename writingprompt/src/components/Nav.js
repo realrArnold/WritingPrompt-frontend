@@ -28,7 +28,7 @@ const Navigation = () => {
             <button onClick={toggleMenu} className="self-end mb-4"><X size={30} /></button>
             <ul className="w-full">
               <li><button onClick={() => handleNavigation("/")} className="block py-2 px-4 hover:text-blue-500">Home</button></li>
-              <li><button onClick={() => handleNavigation("/dashboard")} className="block py-2 px-4 hover:text-blue-500">Dashboard</button></li>
+              <li><button onClick={() => handleNavigation("/userDashboard")} className="block py-2 px-4 hover:text-blue-500">Dashboard</button></li>
               <li><button onClick={() => handleNavigation("/promptspage")} className="block py-2 px-4 hover:text-blue-500">Prompts</button></li>
               <li><button onClick={() => handleNavigation("/noticeboard")} className="block py-2 px-4 hover:text-blue-500">Notice Board</button></li>
               <li><button onClick={() => handleNavigation("/login")} className="block py-2 px-4 bg-blue-500 text-white rounded-lg">Login</button></li>
