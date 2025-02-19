@@ -32,7 +32,7 @@ const HeroPrompt = ({ setWritingPrompt}) => { // Destructure setWritingPrompt he
         console.log(data);
         const prompt = data.data.words || "No prompt available.";
         
-        setWritingPrompts(prompt);
+        setWritingPrompts(prompt); //update this component's state
         setWritingPrompt(prompt); // Update the parent component's state
       } catch (err) {
         console.error("Failed to fetch writing prompts:", err);
@@ -45,30 +45,14 @@ const HeroPrompt = ({ setWritingPrompt}) => { // Destructure setWritingPrompt he
   }, [setWritingPrompt]); // Dependency ensures this effect runs when the callback is provided
 
 
-  // useEffect(() => {
-  //   const fetchWritingPrompts = async () => {
-  //     setLoading(true);
-  //     try {
-  //       const data = await client.getRandomWritingPrompt();
-  //       console.log(data);
-  //       setWritingPrompts(data.data.words || []); 
-  //     } catch (err) {
-  //       console.error("Failed to fetch writing prompts:", err);
-  //       setError("Unable to load writing prompts.");
-  //     } 
-  //     finally {
-  //       setLoading(false);
-  //     }
-  //   };
-  //   fetchWritingPrompts();
-  // }, []);
+ 
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
   return (
-    <section className="overflow-hidden pt-32">
+    <section className="overflow-hidden pt-2">
       <div className="container mx-auto max-w-7xl px-4">
         <div className="flex flex-col gap-5">
           <div className="relative flex flex-col items-center justify-center gap-5">

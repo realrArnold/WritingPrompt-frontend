@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/carousel";
 import { ApiClient } from "../../apiclient/client";
 
-const WritingCarousel = () => {
+const WritingCarousel = ({setUserWriting}) => {
   const client = new ApiClient();
   const [userWritings, setUserWritings] = useState([]);
   const [error, setError] = useState(null);
@@ -22,8 +22,9 @@ const WritingCarousel = () => {
       const data = await client.getUserWritings();
       console.log("processing writings", data.data);
       const userWritings = data.data || "No writings available.";
-  
-      setUserWritings(userWritings); // Update the parent component's state
+      
+      setUserWritings(userWritings); // Update this component's state
+      setUserWriting(userWritings); // Update the parent component's state
     } catch (err) {
       console.error("Failed to fetch user writings:", err);
       setError("Unable to load user writings.");
