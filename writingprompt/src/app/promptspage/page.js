@@ -13,16 +13,6 @@ const Home = () => {
 
   const client = new ApiClient(); // Initialize  client
 
-  // // Initialize the ApiClient with token handling
-  // const client = new ApiClient(
-  //   () => localStorage.getItem("token"), // Token provider
-  //   () => {
-  //     console.log("User logged out");
-  //     localStorage.removeItem("token"); // Clear token on logout
-  //   }
-  // );
-
-
   return (
     <div>
       <Nav />
