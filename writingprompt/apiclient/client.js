@@ -1,5 +1,6 @@
 import axios from "axios";
-const url = "http://localhost:3001/";
+// const url = "http://localhost:3001/";
+const url = "https://writingprompt-backend.onrender.com";
 
 //3001 because back end runs on 3001, front end runs on 3000
 
@@ -8,8 +9,6 @@ export class ApiClient {
     this.tokenProvider = tokenProvider;
     this.logoutHandler = logoutHandler;
   }
-
-
 
   async authenticatedCall(method, endpoint, data) {
     console.log(`${url}${endpoint}`);
@@ -36,7 +35,6 @@ export class ApiClient {
       password: data.password,
     });
   }
-
 
   async login(username, password) {
     try {
@@ -68,10 +66,21 @@ export class ApiClient {
     return data;
   }
 
-  async getRandomWritingPrompt() {
+  // //function to get a random writing prompt every time browser is refreshed
+  // async getRandomWritingPrompt() {
+  //   const data = await this.authenticatedCall(
+  //     "get",
+  //     `writingPrompts/random`,
+  //     {}
+  //   );
+  //   return data;
+  // }
+
+  //function to get a daily writing prompt - controlled by external cron-job on backend
+  async getDailyWritingPrompt() {
     const data = await this.authenticatedCall(
       "get",
-      `writingPrompts/random`,
+      `writingPrompts/daily`,
       {}
     );
     return data;
@@ -86,8 +95,6 @@ export class ApiClient {
       // writtenBy: data.username,
     });
   }
-
-
 
   // Function to get user writings for display on user dashboard
   async getUserWritings() {
@@ -105,6 +112,4 @@ export class ApiClient {
     );
     return data;
   }
-
-
 }
