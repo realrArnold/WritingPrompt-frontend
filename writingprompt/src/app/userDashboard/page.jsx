@@ -17,10 +17,12 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { ChartComponent } from "@/components/UserChart";
+import { ChartComponentLiveData } from "@/components/UserChartLiveData";
 import WritingCarousel from "@/components/WritingCarousel";
 
 const Dashboard = () => {
   const client = new ApiClient(); // Initialize  client
+  const [userWriting, setUserWriting] = useState([]); // State to hold userWriting
 
   return (
     <SidebarProvider>
@@ -43,14 +45,19 @@ const Dashboard = () => {
             </Breadcrumb>
           </div>
         </header>
+        {/* shows test data chart (pretty!) */}
         <div className="w-full gap-4 p-6 pt-0">
-          <ChartComponent />
+          <ChartComponent userWriting={userWriting} />
         </div>
+        {/* shows live data chart  */}
+        {/* <div className="w-full gap-4 p-6 pt-0">
+          <ChartComponentLiveData userWriting={userWriting} />
+        </div> */}
         <div className="w-full pt-0 pb-2 flex flex-col items-center">
           <label className="text-lg text-center font-semibold tracking-tight pb-2">
             Recent Writings
           </label>
-          <WritingCarousel client={client} />
+          <WritingCarousel client={client} setUserWriting={setUserWriting} />
         </div>
       </SidebarInset>
     </SidebarProvider>

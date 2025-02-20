@@ -14,64 +14,44 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 
-//test Data - produces a pretty chart!
-const monthlyData = [
-  { date: "2023-01-01", count: 2 },
-  { date: "2023-01-02", count: 1 },
-  { date: "2023-01-03", count: 0 },
-  { date: "2023-01-04", count: 3 },
-  { date: "2023-01-05", count: 2 },
-  { date: "2023-01-06", count: 0 },
-  { date: "2023-01-07", count: 1 },
-  { date: "2023-01-08", count: 5 },
-  { date: "2023-01-09", count: 1 },
-  { date: "2023-01-10", count: 1 },
-  { date: "2023-01-11", count: 2 },
-  { date: "2023-01-12", count: 1 },
-  { date: "2023-01-13", count: 0 },
-  { date: "2023-01-14", count: 2},
-  { date: "2023-01-15", count: 1},
-  { date: "2023-01-16", count: 0 },
-  { date: "2023-01-17", count: 1 },
-  { date: "2023-01-18", count: 5 },
-  { date: "2023-01-19", count: 1 },
-  { date: "2023-01-20", count: 1 },
-  { date: "2023-01-21", count: 2 },
-  { date: "2023-01-22", count: 1 },
-  { date: "2023-01-23", count: 0 },
-  { date: "2023-01-24", count: 2 },
-  { date: "2023-01-25", count: 1 },
-  { date: "2023-01-26", count: 0 },
-  { date: "2023-01-27", count: 1 },
-  { date: "2023-01-28", count: 5 },
-  { date: "2023-01-29", count: 1 },
-  { date: "2023-01-30", count: 1 },
-  { date: "2023-01-31", count: 2 },
-];
+//works with real data
+const transformToMonthlyData = (userWriting) => {
+  const monthlyData = {};
+  userWriting.forEach((writing) => {
+    const date = new Date(writing.createdAt).toISOString().split("T")[0];
+    if (!monthlyData[date]) {
+      monthlyData[date] = 0;
+    }
+    monthlyData[date] += 1;
+  });
+  return Object.keys(monthlyData).map((date) => ({
+    date,
+    count: monthlyData[date],
+  }));
+};
 
-//test Data - produces a pretty chart!
-const yearlyData = [
-  { date: "Jan", count: 46 },
-  { date: "Feb", count: 15 },
-  { date: "Mar", count: 23 },
-  { date: "Apr", count: 18 },
-  { date: "May", count: 30 },
-  { date: "Jun", count: 22 },
-  { date: "Jul", count: 25 },
-  { date: "Aug", count: 28 },
-  { date: "Sep", count: 20 },
-  { date: "Oct", count: 18 },
-  { date: "Nov", count: 16 },
-  { date: "Dec", count: 14 },
-  
-];
+//works with real data
+const transformToYearlyData = (userWriting) => {
+  const yearlyData = {};
+  userWriting.forEach((writing) => {
+    const month = new Date(writing.createdAt).toLocaleString("en-GB", { month: "short" });
+    if (!yearlyData[month]) {
+      yearlyData[month] = 0;
+    }
+    yearlyData[month] += 1;
+  });
+  return Object.keys(yearlyData).map((month) => ({
+    date: month,
+    count: yearlyData[month],
+  }));
+};
 
-// works with test data
+
+//works with real data
 const chartConfig = {
   monthlyCount: {
     label: "Monthly",
-    color: "hsl(210, 100%, 50%)", // Changed to blue
-    data: monthlyData,
+    color: "hsl(210, 100%, 50%)", 
     xAxisFormatter: (value) => {
       const date = new Date(value);
       return date.toLocaleDateString("en-GB", {
@@ -83,17 +63,24 @@ const chartConfig = {
   yearlyCount: {
     label: "Yearly",
     color: "hsl(var(--chart-2))",
-    data: yearlyData,
-    xAxisFormatter: (value) => {
-      const date = new Date(value);
-      return value
-    },
+    xAxisFormatter: (value) => value,
   },
 };
 
-// works with the test data
-export function ChartComponent({userWriting}) {
+//works with real data
+export function ChartComponentLiveData({ userWriting }) {
   const [activeChart, setActiveChart] = useState("monthlyCount");
+  const [monthlyData, setMonthlyData] = useState([]);
+  const [yearlyData, setYearlyData] = useState([]);
+
+  useEffect(() => {
+    if (Array.isArray(userWriting)) {
+      setMonthlyData(transformToMonthlyData(userWriting));
+      setYearlyData(transformToYearlyData(userWriting));
+    } else {
+      console.error("userWritings is not an array:", userWriting);
+    }
+  }, [userWriting]);
 
   const total = useMemo(() => {
     return {
