@@ -49,8 +49,6 @@ const Signup = () => {
     
     <div className="flex justify-center items-center min-h-screen bg-white">
  <div className="text-center mb-6">
-          <h1 className="text-3xl font-bold text-green-700 mb-2">Welcome</h1>
-            <h2 className="text-xl text-gray-600 mb-6">It is free</h2>
             </div>
       <form onSubmit={submitHandler} className="border-2 border-green-700 p-6 rounded-lg shadow-lg w-96">
         <div className="mb-4">

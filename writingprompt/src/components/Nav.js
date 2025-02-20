@@ -15,7 +15,7 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="bg-white shadow-md p-4 w-full top-0 left-0 right-0 z-50">
+    <nav className="bg-white p-4 w-full top-0 left-0 right-0 z-50">
       <div className="flex justify-between items-center max-w-screen-xl mx-auto px-4">
         <button onClick={toggleMenu}>
         
@@ -24,7 +24,7 @@ const Navigation = () => {
         <h1 className="text-2xl font-bold text-blue-500 ml-auto">Writing Prompt App</h1>
         
         {isOpen && (
-          <div className="fixed inset-0 bg-white bg-opacity-100 z-40 flex flex-col items-start shadow-md transition-all duration-300 p-4 w-64">
+          <div className="fixed inset-0 bg-white bg-opacity-100 z-40 flex flex-col items-start transition-all duration-300 p-4 w-64">
             <button onClick={toggleMenu} className="self-end mb-4"><X size={30} /></button>
             <ul className="w-full">
               <li><button onClick={() => handleNavigation("/promptspage")} className="block py-2 px-4 hover:text-blue-500">Home</button></li>
