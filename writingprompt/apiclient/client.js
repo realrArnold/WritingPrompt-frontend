@@ -1,7 +1,7 @@
+
 import axios from "axios";
 // const url = "http://localhost:3001/";
 const url = "https://writingprompt-backend.onrender.com";
-
 //3001 because back end runs on 3001, front end runs on 3000
 
 export class ApiClient {
@@ -61,30 +61,25 @@ export class ApiClient {
     return data;
   }
 
-  async getWritingPrompts() {
-    const data = await this.authenticatedCall("get", `writingPrompts`, {});
-    return data;
-  }
 
-  // //function to get a random writing prompt every time browser is refreshed
-  // async getRandomWritingPrompt() {
-  //   const data = await this.authenticatedCall(
-  //     "get",
-  //     `writingPrompts/random`,
-  //     {}
-  //   );
-  //   return data;
-  // }
+ 
+// //function to get a random writing prompt every time the browser is refreshed
+//   async getRandomWritingPrompt() {
+//     const data = await this.authenticatedCall(
+//       "get",
+//       `writingPrompts/random`,
+//       {}
+//     );
+//     return data;
+//   }
 
-  //function to get a daily writing prompt - controlled by external cron-job on backend
-  async getDailyWritingPrompt() {
-    const data = await this.authenticatedCall(
-      "get",
-      `writingPrompts/daily`,
-      {}
-    );
-    return data;
-  }
+    // Function to get the current daily writing prompt
+    async getCurrentDailyWritingPrompt() {
+      const data = await this.authenticatedCall("get", `writingPrompts/currentDaily`, {});
+      return data;
+    }
+  
+
 
   async addWriting(data) {
     return await this.authenticatedCall("post", `writings/add`, {
