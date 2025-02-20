@@ -28,7 +28,7 @@ const HeroPrompt = ({ setWritingPrompt}) => { // Destructure setWritingPrompt he
       setLoading(true);
       
       try {
-        const data = await client.getRandomWritingPrompt();
+        const data = await client.getCurrentDailyWritingPrompt();
         console.log(data);
         const prompt = data.data.words || "No prompt available.";
         
