@@ -1,7 +1,12 @@
 "use client";
+import HeroPrompt from "@/components/HeroPrompt";
+import EntriesWrapper from "@/components/EntriesWrapper";
+import Nav from "@/components/Nav";
+import WritingArea from "@/components/WritingArea.js";
 import React, { useState } from "react";
 import { ApiClient } from "../../../apiclient/client";
-import { DBoardAppSidebar } from "@/components/DBoard-app-sidebar";
+
+import { HomeAppSidebar } from "@/components/Home-app-sidebar ";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -16,17 +21,15 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { ChartComponent } from "@/components/UserChart";
-import { ChartComponentLiveData } from "@/components/UserChartLiveData";
-import WritingCarousel from "@/components/WritingCarousel";
 
-const Dashboard = () => {
+const Home = () => {
+  const [writingPrompt, setWritingPrompt] = useState(""); // State to hold writingPrompt
+
   const client = new ApiClient(); // Initialize  client
-  const [userWriting, setUserWriting] = useState([]); // State to hold userWriting
 
   return (
     <SidebarProvider>
-      <DBoardAppSidebar />
+      <HomeAppSidebar />
       <SidebarInset>
         <header className="flex pb-4 h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
           <div className="flex items-center gap-2 px-4">
@@ -35,33 +38,32 @@ const Dashboard = () => {
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="#">Dashboard</BreadcrumbLink>
+                  <BreadcrumbLink href="/userDashboard">
+                    Home
+                  </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>Home</BreadcrumbPage>
+                  <BreadcrumbPage>Daily Writing Prompt</BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
           </div>
         </header>
-        {/* shows test data chart (pretty!) */}
-        <div className="w-full gap-4 p-6 pt-0">
-          <ChartComponent userWriting={userWriting} />
-        </div>
-        {/* shows live data chart  */}
-        {/* <div className="w-full gap-4 p-6 pt-0">
-          <ChartComponentLiveData userWriting={userWriting} />
-        </div> */}
-        <div className="w-full pt-0 pb-2 flex flex-col items-center">
-          <label className="text-lg text-center font-semibold tracking-tight pb-2">
-            Recent Writings
-          </label>
-          <WritingCarousel client={client} setUserWriting={setUserWriting} />
+
+        <div>
+          {/* Pass setWritingPrompt to HeroPrompt */}
+          <HeroPrompt setWritingPrompt={setWritingPrompt} />
+
+          {/* Pass writingPrompt and username to WritingArea */}
+          <WritingArea client={client} writingPrompt={writingPrompt} />
+          <div>
+            <EntriesWrapper client={client} />
+          </div>
         </div>
       </SidebarInset>
     </SidebarProvider>
   );
 };
 
-export default Dashboard;
+export default Home;

@@ -61,7 +61,7 @@ const data = {
   ],
 };
 
-export function DBoardAppSidebar({ ...props }) {
+export function HomeAppSidebar({ ...props }) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
