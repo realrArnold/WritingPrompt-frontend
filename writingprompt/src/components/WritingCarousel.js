@@ -47,7 +47,7 @@ return (
             {userWritings.map((writing, index) => (
                 <CarouselItem key={index} className="pl-1 md:basis-1/2 lg:basis-1/3">
                     <div className="p-1">
-                        <Card>
+                        <Card className="bg-gradient-to-bl from-zinc-50 to-zinc-200">
                             <CardContent className="flex flex-col aspect-square items-start  p-6">
                             <p className="text-sm text-justify font-semibold text-gray-600 mb-2">
                                     {new Date(writing.createdAt).toLocaleDateString("en-GB")}

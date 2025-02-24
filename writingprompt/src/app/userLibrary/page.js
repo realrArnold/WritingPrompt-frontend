@@ -1,7 +1,8 @@
 "use client";
-import React, { useState } from "react";
-import { ApiClient } from "../../../apiclient/client";
+import { useEffect } from "react";
+import UserWCardWrapper from "@/components/UserWCardWrapper";
 import { DBoardAppSidebar } from "@/components/DBoard-app-sidebar";
+import { ApiClient } from "../../../apiclient/client";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -16,14 +17,9 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { ChartComponent } from "@/components/UserChart";
-import { ChartComponentLiveData } from "@/components/UserChartLiveData";
-import WritingCarousel from "@/components/WritingCarousel";
 
-const Dashboard = () => {
+const userLibrary = () => {
   const client = new ApiClient(); // Initialize  client
-  const [userWriting, setUserWriting] = useState([]); // State to hold userWriting
-
   return (
     <SidebarProvider>
       <DBoardAppSidebar />
@@ -35,33 +31,27 @@ const Dashboard = () => {
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="#">Dashboard</BreadcrumbLink>
+                  <BreadcrumbLink href="/userDashboard">
+                    Dashboard
+                  </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>Home</BreadcrumbPage>
+                  <BreadcrumbPage>Your Library</BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
           </div>
         </header>
-        {/* shows test data chart (pretty!) */}
-        <div className="w-full gap-4 p-6 pt-0">
-          <ChartComponent userWriting={userWriting} />
-        </div>
-        {/* shows live data chart  */}
-        {/* <div className="w-full gap-4 p-6 pt-0">
-          <ChartComponentLiveData userWriting={userWriting} />
-        </div> */}
-        <div className="w-full pt-0 pb-2 flex flex-col items-center">
-          <label className="text-lg text-center font-semibold tracking-tight pb-2">
-            Recent Writings
-          </label>
-          <WritingCarousel client={client} setUserWriting={setUserWriting} />
+        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl pl-6 pb-6">
+          All your hard work in one place...
+        </h1>
+        <div className="">
+          <UserWCardWrapper client={client} />
         </div>
       </SidebarInset>
     </SidebarProvider>
   );
 };
 
-export default Dashboard;
+export default userLibrary;

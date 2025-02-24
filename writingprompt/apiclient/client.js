@@ -79,6 +79,13 @@ export class ApiClient {
     });
   }
 
+
+  //function to delete writing by ID
+  deleteWritingByID(writingID) {
+    return this.authenticatedCall("delete", `writings/${writingID}`,{});
+  };
+
+
   // Function to get user writings for display on user dashboard
   async getUserWritings() {
     const userId = localStorage.getItem("userId"); // Retrieve user ID from localStorage
