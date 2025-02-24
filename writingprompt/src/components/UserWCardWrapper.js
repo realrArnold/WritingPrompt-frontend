@@ -49,6 +49,7 @@ return (
           date={new Date(userWriting.createdAt).toLocaleDateString("en-GB")}
           writingID={userWriting._id}
           deleteWriting={deleteWriting}
+          client={client}
         />
       );
     })}

@@ -86,11 +86,8 @@ export class ApiClient {
 
   async addWriting(data) {
     return await this.authenticatedCall("post", `writings/add`, {
-      // title: data.title,
       words: data.words,
       writingPrompt: data.writingPrompt,
-      // date: data.newdate(),
-      // writtenBy: data.username,
     });
   }
 
@@ -99,7 +96,13 @@ export class ApiClient {
     return this.authenticatedCall("delete", `writings/${writingID}`,{});
   };
 
-
+  //function to update writing by ID
+  updateWriting(writingID, data) {
+    return this.authenticatedCall("put", `writings/${writingID}`, {
+      title: data.title,
+      genre: data.genre,
+    });
+  }
 
 
 
