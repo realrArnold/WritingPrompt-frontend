@@ -1,7 +1,8 @@
 "use client";
-import React, from "react";
-import { ApiClient } from "../../../apiclient/client";
+import { useEffect} from "react";
+import UserWCardWrapper from "@/components/UserWCardWrapper";
 import { DBoardAppSidebar } from "@/components/DBoard-app-sidebar";
+import { ApiClient } from '../../../apiclient/client'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -18,6 +19,7 @@ import {
 } from "@/components/ui/sidebar";
 
 const userLibrary = () => {
+    const client = new ApiClient(); // Initialize  client
   return (
         <SidebarProvider>
           <DBoardAppSidebar />
@@ -39,13 +41,15 @@ const userLibrary = () => {
                 </Breadcrumb>
               </div>
             </header>
-              <label className="text-lg text-center font-semibold tracking-tight pb-2">
+              <label className="text-lg text-center font-semibold tracking-tight pb-4">
                 All your hard work in one place...
               </label>
-              <div>
-
-
-              </div>
+              
+              <div className="">
+                <UserWCardWrapper 
+                client= { client }/>
+                </div>
+               
              
           </SidebarInset>
         </SidebarProvider>
