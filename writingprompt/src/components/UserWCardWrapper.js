@@ -18,6 +18,7 @@ const Page = ({ client }) => {
     fetchData();
   }, []);
 
+
   const deleteWriting = async (writingID) => {
     console.log("Writing ID to delete:", writingID);
    
@@ -31,11 +32,13 @@ const Page = ({ client }) => {
     } else {
       console.log("Error deleted event", response);
     }
-  }
+  };
+
+const sortedUserWritings = userWritings.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
 return (
   <div className="grid sm:grid-cols-1  md:grid-cols-3 gap-4 px-4">
-    {userWritings?.map((userWriting) => {
+    {sortedUserWritings?.map((userWriting) => {
       return (
         <UserWritingCard
           key={userWriting._id}
