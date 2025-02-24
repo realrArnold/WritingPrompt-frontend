@@ -23,7 +23,7 @@ import {
 } from "lucide-react";
 
 import { NavMain } from "@/components/DBoard-nav-main";
-import { NavUser } from "@/components/nav-user";
+import { NavUser } from "@/components/DBoard-nav-user";
 import {
   Sidebar,
   SidebarContent,
@@ -61,7 +61,7 @@ const data = {
   ],
 };
 
-export function DBoardAppSidebar({ ...props }) {
+export function AppSidebar({ ...props }) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
