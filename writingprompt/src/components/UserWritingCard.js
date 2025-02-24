@@ -19,11 +19,11 @@ import {
 import { Share2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 
-export default function UserWritingCard({ words, writingPrompt, genre, date }) {
+export default function UserWritingCard({ words, writingPrompt, genre, date, writingID, deleteWriting }) {
   return (
     <Card className="w-full flex flex-col h-full bg-gradient-to-bl from-violet-50 via-indigo-100 to-violet-200">
       <CardHeader>
-        <CardTitle>{date}</CardTitle>
+        <CardTitle className="text-violet-500">{date}</CardTitle>
         <Label htmlFor="name">The prompt:</Label>
         <CardDescription className="italic">"{writingPrompt}"</CardDescription>
       </CardHeader>
@@ -63,7 +63,7 @@ export default function UserWritingCard({ words, writingPrompt, genre, date }) {
       </CardContent>
       <CardFooter className="flex justify-between place-items-end">
         <Button><Share2 /> Share</Button>
-        <Button variant="destructive">Delete</Button>
+        <Button variant="destructive" onClick={() => deleteWriting(writingID)}>Delete</Button>
       </CardFooter>
     </Card>
   );
