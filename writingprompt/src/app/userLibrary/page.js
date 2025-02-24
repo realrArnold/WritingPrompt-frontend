@@ -1,8 +1,8 @@
 "use client";
-import { useEffect} from "react";
+import { useEffect } from "react";
 import UserWCardWrapper from "@/components/UserWCardWrapper";
 import { DBoardAppSidebar } from "@/components/DBoard-app-sidebar";
-import { ApiClient } from '../../../apiclient/client'
+import { ApiClient } from "../../../apiclient/client";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -19,41 +19,39 @@ import {
 } from "@/components/ui/sidebar";
 
 const userLibrary = () => {
-    const client = new ApiClient(); // Initialize  client
+  const client = new ApiClient(); // Initialize  client
   return (
-        <SidebarProvider>
-          <DBoardAppSidebar />
-          <SidebarInset>
-            <header className="flex pb-4 h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
-              <div className="flex items-center gap-2 px-4">
-                <SidebarTrigger className="-ml-1" />
-                <Separator orientation="vertical" className="mr-2 h-4" />
-                <Breadcrumb>
-                  <BreadcrumbList>
-                    <BreadcrumbItem className="hidden md:block">
-                      <BreadcrumbLink href="/userDashboard">Dashboard</BreadcrumbLink>
-                    </BreadcrumbItem>
-                    <BreadcrumbSeparator className="hidden md:block" />
-                    <BreadcrumbItem>
-                      <BreadcrumbPage>Your Library</BreadcrumbPage>
-                    </BreadcrumbItem>
-                  </BreadcrumbList>
-                </Breadcrumb>
-              </div>
-            </header>
-              <label className="text-lg text-center font-semibold tracking-tight pb-4">
-                All your hard work in one place...
-              </label>
-              
-              <div className="">
-                <UserWCardWrapper 
-                client= { client }/>
-                </div>
-               
-             
-          </SidebarInset>
-        </SidebarProvider>
-      );
-    };
-    
-export default userLibrary
+    <SidebarProvider>
+      <DBoardAppSidebar />
+      <SidebarInset>
+        <header className="flex pb-4 h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
+          <div className="flex items-center gap-2 px-4">
+            <SidebarTrigger className="-ml-1" />
+            <Separator orientation="vertical" className="mr-2 h-4" />
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem className="hidden md:block">
+                  <BreadcrumbLink href="/userDashboard">
+                    Dashboard
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator className="hidden md:block" />
+                <BreadcrumbItem>
+                  <BreadcrumbPage>Your Library</BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+          </div>
+        </header>
+        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl pl-6 pb-6">
+          All your hard work in one place...
+        </h1>
+        <div className="">
+          <UserWCardWrapper client={client} />
+        </div>
+      </SidebarInset>
+    </SidebarProvider>
+  );
+};
+
+export default userLibrary;
