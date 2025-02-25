@@ -32,7 +32,7 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 
-// This is data for menus. D
+// This is data for menus. 
 const data = {
   user: {
     name: "Username",
@@ -61,7 +61,7 @@ const data = {
   ],
 };
 
-export function DBoardAppSidebar({ ...props }) {
+export function DBoardAppSidebar({ userWritingsCount, ...props }) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
@@ -72,6 +72,7 @@ export function DBoardAppSidebar({ ...props }) {
               height={30}
               width={30}
               alt="Quill pen drawing a line"
+              priority
             />
           </a>
         </div>
@@ -80,6 +81,36 @@ export function DBoardAppSidebar({ ...props }) {
         <NavMain items={data.navMain} />
       </SidebarContent>
       <SidebarFooter>
+        <div name="badge" className="flex mx-auto ">
+          {/* conditional rendering of badges depending on userWritingsCount */}
+          {userWritingsCount >= 10 && userWritingsCount < 30 && (
+            <Image
+              src="/images/Novice_small.svg"
+              height={180}
+              width={180}
+              alt="novice badge with pen nib and green leaves"
+              priority
+            />
+          )}
+          {userWritingsCount >= 30 && userWritingsCount < 100 && (
+            <Image
+              src="/images/Author_small.svg"
+              height={180}
+              width={180}
+              alt="novice badge with pen nib and purple leaves"
+              priority
+            />
+          )}
+          {userWritingsCount >= 100 && (
+            <Image
+              src="/images/Master_small.svg"
+              height={180}
+              width={180}
+              alt="novice badge with pen nib and magenta leaves"
+              priority
+            />
+          )}
+        </div>
         <NavUser user={data.user} />
       </SidebarFooter>
       <SidebarRail />

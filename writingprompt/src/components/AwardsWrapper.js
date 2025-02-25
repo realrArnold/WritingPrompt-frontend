@@ -7,7 +7,7 @@ import {useEffect, useState} from "react";
 
 
 
-const AwardsWrapper = () => {
+const AwardsWrapper = ({ setUserWritingsCount }) => {
     const client = new ApiClient();
     const [userWritings, setUserWritings] = useState([]);
     //define opacity variables of awards
@@ -35,6 +35,9 @@ useEffect(() => {
 //count number of user writings    
 const userWritingsCount = userWritings.length;
 
+//Pass the UserWritings count to the parent component
+setUserWritingsCount(userWritingsCount);
+
 //set opacity of awards based on number of user writings
 if (userWritingsCount < 10) {
     setOpacityNovice("opacity-30")
@@ -54,7 +57,7 @@ if (userWritingsCount < 30) {
   } else if (userWritingsCount >= 100) {
     setOpacityMaster("opacity-100");
   }
-}, [userWritings]); //dependancy array - tells React to run the effect function whenver the userWritings state changes.
+}, [userWritings, setUserWritingsCount]); //dependancy array - tells React to run the effect function whenver the userWritings state changes.
 
 
   return (
