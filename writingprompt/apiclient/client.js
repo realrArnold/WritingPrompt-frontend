@@ -10,8 +10,6 @@ export class ApiClient {
     this.logoutHandler = logoutHandler;
   }
 
-
-
   async authenticatedCall(method, endpoint, data) {
     console.log(`${url}${endpoint}`);
     return axios({
@@ -37,7 +35,6 @@ export class ApiClient {
       password: data.password,
     });
   }
-
 
   async login(username, password) {
     try {
@@ -69,20 +66,11 @@ export class ApiClient {
     return data;
   }
 
-   // Function to get the current daily writing prompt
-   async getCurrentDailyWritingPrompt() {
+  // Function to get the current daily writing prompt
+  async getCurrentDailyWritingPrompt() {
     const data = await this.authenticatedCall("get", `writingPrompts/currentDaily`, {});
     return data;
   }
- 
-  // async getRandomWritingPrompt() {
-  //   const data = await this.authenticatedCall(
-  //     "get",
-  //     `writingPrompts/random`,
-  //     {}
-  //   );
-  //   return data;
-  // }
 
   async addWriting(data) {
     return await this.authenticatedCall("post", `writings/add`, {
@@ -90,6 +78,7 @@ export class ApiClient {
       writingPrompt: data.writingPrompt,
     });
   }
+
 
   //function to delete writing by ID
   deleteWritingByID(writingID) {
@@ -103,7 +92,6 @@ export class ApiClient {
       genre: data.genre,
     });
   }
-
 
 
   // Function to get user writings for display on user dashboard
@@ -123,5 +111,30 @@ export class ApiClient {
     return data;
   }
 
+  // Logout function
+  async logout() {
+    try {
+      // Send a POST request to the logout route on the backend
+      await axios({
+        method: "POST",
+        url: `${url}users/logout`,
+        withCredentials: true,  // Ensure the cookie is handled correctly
+      });
 
+      // Clear user-related data from localStorage
+      localStorage.removeItem("authToken");
+      localStorage.removeItem("userId");
+
+      // Optionally, call the logoutHandler (if passed)
+      if (this.logoutHandler) {
+        this.logoutHandler();
+      }
+
+      console.log("Logged out successfully");
+      return true;
+    } catch (error) {
+      console.error("Logout failed:", error);
+      return false;
+    }
+  }
 }
