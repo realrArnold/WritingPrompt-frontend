@@ -1,6 +1,7 @@
 "use client";
 import React, from "react";
-import { ApiClient } from "../../../apiclient/client";
+import AwardsWrapper from "@/components/AwardsWrapper";
+
 import { DBoardAppSidebar } from "@/components/DBoard-app-sidebar";
 import {
   Breadcrumb,
@@ -17,7 +18,11 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 
+
 const awards = () => {
+
+    
+
    return (
             <SidebarProvider>
               <DBoardAppSidebar />
@@ -39,14 +44,16 @@ const awards = () => {
                     </Breadcrumb>
                   </div>
                 </header>
-                  <label className="text-lg text-center font-semibold tracking-tight pb-2">
-                  Great authors are made, not born. All creative skills are gained through practice and your are doing great!
-                  </label>
-                  <div>
-    
-    
+                <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl pl-6 pb-6">
+                  Great authors are made, not born. All creative skills are gained through practice...
+                  </h1>
+                  
+                  <div  className="">
+                    
+                    <AwardsWrapper />
+
                   </div>
-                 
+  
               </SidebarInset>
             </SidebarProvider>
           );
