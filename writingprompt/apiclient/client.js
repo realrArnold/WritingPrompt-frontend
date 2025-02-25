@@ -85,6 +85,14 @@ export class ApiClient {
     return this.authenticatedCall("delete", `writings/${writingID}`,{});
   };
 
+  //function to update writing by ID
+  updateWriting(writingID, data) {
+    return this.authenticatedCall("put", `writings/${writingID}`, {
+      title: data.title,
+      genre: data.genre,
+    });
+  }
+
 
   // Function to get user writings for display on user dashboard
   async getUserWritings() {
