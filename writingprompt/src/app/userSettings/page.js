@@ -1,5 +1,5 @@
 "use client";
-import React, from "react";
+import { useState, useEffect } from "react";
 import { ApiClient } from "../../../apiclient/client";
 import { DBoardAppSidebar } from "@/components/DBoard-app-sidebar";
 import {
@@ -18,9 +18,28 @@ import {
 } from "@/components/ui/sidebar";
 
 const displaySettings = () => {
+  const client = new ApiClient(); // Initialize  client
+  
+  //defines state for userWritingsCount
+  const [userWritingsCount, setUserWritingsCount] = useState(0);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await client.getUserWritings();
+        setUserWritingsCount(data.data.length);
+       
+      } catch (error) {
+        console.error("Failed to fetch data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
    return (
           <SidebarProvider>
-            <DBoardAppSidebar />
+            <DBoardAppSidebar userWritingsCount={userWritingsCount} />
             <SidebarInset>
               <header className="flex pb-4 h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
                 <div className="flex items-center gap-2 px-4">
