@@ -1,6 +1,6 @@
 import axios from "axios";
-const url = "http://localhost:3001/";
-// const url = "https://writingprompt-backend.onrender.com/";
+// const url = "http://localhost:3001/";
+const url = "https://writingprompt-backend.onrender.com/";
 
 //3001 because back end runs on 3001, front end runs on 3000
 
