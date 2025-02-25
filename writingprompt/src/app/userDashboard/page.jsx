@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ApiClient } from "../../../apiclient/client";
 import { DBoardAppSidebar } from "@/components/DBoard-app-sidebar";
 import {
@@ -23,10 +23,27 @@ import WritingCarousel from "@/components/WritingCarousel";
 const Dashboard = () => {
   const client = new ApiClient(); // Initialize  client
   const [userWriting, setUserWriting] = useState([]); // State to hold userWriting
+  //defines state for userWritingsCount
+  const [userWritingsCount, setUserWritingsCount] = useState(0);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await client.getUserWritings();
+        setUserWritingsCount(data.data.length);
+        setUserWriting(data.data);
+      } catch (error) {
+        console.error("Failed to fetch data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  
 
   return (
     <SidebarProvider>
-      <DBoardAppSidebar />
+      <DBoardAppSidebar userWritingsCount={userWritingsCount}/>
       <SidebarInset>
         <header className="flex pb-4 h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
           <div className="flex items-center gap-2 px-4">
@@ -57,7 +74,8 @@ const Dashboard = () => {
           <label className="text-lg text-center font-semibold tracking-tight pb-2">
             Recent Writings
           </label>
-          <WritingCarousel client={client} setUserWriting={setUserWriting} />
+          <WritingCarousel client={client} setUserWriting={setUserWriting}
+          setUserWritingsCount={setUserWritingsCount} />
         </div>
       </SidebarInset>
     </SidebarProvider>
