@@ -25,7 +25,7 @@ export default function EntriesCard({ title, words, writingPrompt, genre, date, 
           
         {showFullText ? words : (
             <>
-              '${words.substring(0, 150)}...
+              {words.substring(0, 150)}"...""
               <span className="text-blue-500"> <br></br> read more</span>
             </>
           )}
