@@ -45,8 +45,6 @@ const HeroPrompt = ({ setWritingPrompt}) => { // Destructure setWritingPrompt he
   }, [setWritingPrompt]); // Dependency ensures this effect runs when the callback is provided
 
 
- 
-
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -58,10 +56,10 @@ const HeroPrompt = ({ setWritingPrompt}) => { // Destructure setWritingPrompt he
           <div className="relative flex flex-col items-center justify-center gap-5">
             <Image
               priority
-              src="/images/quill.svg"
-              height={48}
-              width={48}
-              alt="Quill pen drawing a line"
+              src="/images/Logo.svg"
+              height={140}
+              width={140}
+              alt="Quill pen drawing a line and word writing prompts"
             />
 
 
