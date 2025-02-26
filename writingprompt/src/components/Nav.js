@@ -1,14 +1,21 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Menu, X } from "lucide-react";
 const { ApiClient } = require("../../apiclient/client");
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
 
   const apiClient = new ApiClient(); // Initialize your ApiClient
+
+  useEffect(() => {
+    // Check if the user is logged in
+    const token = localStorage.getItem("authToken");
+    setIsLoggedIn(!!token); // Convert token existence to boolean
+  }, []);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -26,8 +33,11 @@ const Navigation = () => {
       localStorage.removeItem("authToken");
       localStorage.removeItem("userId");
 
-      // Optionally, you can redirect to login page after logout
-      router.push("/login"); 
+      // Update state
+      setIsLoggedIn(false);
+
+      // Optionally, redirect to login page after logout
+      router.push("/login");
     } catch (error) {
       console.error("Logout failed:", error);
     }
@@ -39,8 +49,25 @@ const Navigation = () => {
         <button onClick={toggleMenu}>
           {isOpen ? <X size={30} /> : <Menu size={30} />}
         </button>
-        <h1 className="text-2xl font-bold text-blue-500 ml-auto">Login/Sign Up</h1>
-        
+
+        {/* Show Login & Sign Up only if user is NOT logged in */}
+        {!isLoggedIn && (
+          <div className="ml-auto flex space-x-4">
+            <button
+              onClick={() => router.push("/login")}
+              className="text-2xl font-bold text-blue-500"
+            >
+              Login
+            </button>
+            <button
+              onClick={() => router.push("/signup")}
+              className="text-2xl font-bold text-blue-500"
+            >
+              Sign Up
+            </button>
+          </div>
+        )}
+
         {isOpen && (
           <div className="fixed inset-0 bg-white bg-opacity-100 z-40 flex flex-col items-start transition-all duration-300 p-4 w-64">
             <button onClick={toggleMenu} className="self-end mb-4"><X size={30} /></button>
@@ -49,14 +76,19 @@ const Navigation = () => {
               <li><button onClick={() => handleNavigation("/userDashboard")} className="block py-2 px-4 hover:text-blue-500">Dashboard</button></li>
               <li><button onClick={() => handleNavigation("/promptspage")} className="block py-2 px-4 hover:text-blue-500">Prompts</button></li>
               <li><button onClick={() => handleNavigation("/noticeboard")} className="block py-2 px-4 hover:text-blue-500">Notice Board</button></li>
-              <li><button onClick={() => handleNavigation("/login")} className="block py-2 px-4 hover:text-blue-500">Login</button></li>
-              <li><button onClick={() => handleNavigation("/signup")} className="block py-2 px-4 hover:text-blue-500">Sign Up</button></li>
-              {/* If the user is logged in, show the Logout button */}
-              <li>
-                <button onClick={handleLogout} className="block py-2 px-4 hover:text-blue-500">
-                  Logout
-                </button>
-              </li>
+
+              {!isLoggedIn ? (
+                <>
+                  <li><button onClick={() => handleNavigation("/login")} className="block py-2 px-4 hover:text-blue-500">Login</button></li>
+                  <li><button onClick={() => handleNavigation("/signup")} className="block py-2 px-4 hover:text-blue-500">Sign Up</button></li>
+                </>
+              ) : (
+                <li>
+                  <button onClick={handleLogout} className="block py-2 px-4 hover:text-blue-500">
+                    Logout
+                  </button>
+                </li>
+              )}
             </ul>
           </div>
         )}
@@ -66,6 +98,7 @@ const Navigation = () => {
 };
 
 export default Navigation;
+
 
 
 // export default navbar
