@@ -45,9 +45,10 @@ export class ApiClient {
         data: { username, password },
       });
 
-      // Store token and user ID in localStorage
+      // Store token and user ID and username in localStorage
       localStorage.setItem("authToken", response.data.token);
       localStorage.setItem("userId", response.data.user.id); // Assuming the backend includes a `user` object with an `id`
+      localStorage.setItem("username", response.data.user.username); // Store the username
 
       return response.data; // Return the response for further handling if needed
     } catch (error) {
@@ -124,6 +125,7 @@ export class ApiClient {
       // Clear user-related data from localStorage
       localStorage.removeItem("authToken");
       localStorage.removeItem("userId");
+      localStorage.removeItem("username"); // Remove the username
 
       // Optionally, call the logoutHandler (if passed)
       if (this.logoutHandler) {

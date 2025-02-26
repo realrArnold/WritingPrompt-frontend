@@ -34,13 +34,8 @@ import {
 
 // This is data for menus. D
 const data = {
-  user: {
-    name: "Username",
-    email: "username@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
 
-  navMain: [
+navMain: [
     {
       title: "Your Library",
       url: "/userLibrary",
@@ -62,6 +57,36 @@ const data = {
 };
 
 export function DBoardAppSidebar({ ...props }) {
+  // to display username of who is logged in
+  const [userData, setUserData] = React.useState({
+    name: "",
+    email: "",
+    avatar: "/avatars/shadcn.jpg",
+  });
+
+  React.useEffect(() => {
+    // Fetch user information from localStorage
+    const userId = localStorage.getItem("userId");
+    const username = localStorage.getItem("username");  // Assuming you store the username during login
+    const avatar = "/avatars/default.jpg"; // Default avatar or you could have it saved in localStorage too
+
+    if (username) {
+      setUserData({
+        name: username,
+        email: `${username}@example.com`, // You can change this as per your actual email storing logic
+        avatar,
+      });
+    } else {
+      // Set default values for guest user
+      setUserData({
+        name: "Guest",
+        email: "You are not logged in",
+        avatar: "/avatars/default.jpg", // You can provide a default guest avatar here
+      });
+    }
+
+
+  }, []);
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
@@ -80,7 +105,8 @@ export function DBoardAppSidebar({ ...props }) {
         <NavMain items={data.navMain} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+      <NavUser user={userData} />
+        {/* <NavUser user={data.user} /> */}
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
