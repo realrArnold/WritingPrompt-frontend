@@ -68,16 +68,16 @@ export function DBoardAppSidebar({ userWritingsCount, ...props }) {
         <div className="flex mx-auto pt-4 pb-4">
           <a href="/promptspage">
             <Image
-              src="/images/quill.svg"
-              height={30}
-              width={30}
+              src="/images/Logo.svg"
+              height={60}
+              width={60}
               alt="Quill pen drawing a line"
               priority
             />
           </a>
         </div>
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className="pl-4">
         <NavMain items={data.navMain} />
       </SidebarContent>
       <SidebarFooter>
