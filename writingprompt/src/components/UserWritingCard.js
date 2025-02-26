@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/select";
 import { Share2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import DeleteAlert from "@/components/DeleteAlert";
 
 export default function UserWritingCard({ client, words, writingPrompt, title, genre, date, writingID, deleteWriting }) {
   const [data, setData] = useState({
@@ -63,6 +64,12 @@ export default function UserWritingCard({ client, words, writingPrompt, title, g
 
       if (response.status === 200) {
         setSuccessMessage("Title updated!");
+
+        // Clear the title input field
+        setData((prevData) => ({
+          ...prevData,
+          title: "",
+        }));
        
 
           // Clear the success message after 30 seconds
@@ -92,6 +99,12 @@ export default function UserWritingCard({ client, words, writingPrompt, title, g
 
       if (response.status === 200) {
         setSuccessGenreMessage("Genre updated!");
+
+         // Clear the genre input field
+         setData((prevData) => ({
+          ...prevData,
+          genre: "No genre",
+        }));
        
 
           // Clear the success message after 30 seconds
@@ -197,10 +210,9 @@ export default function UserWritingCard({ client, words, writingPrompt, title, g
         <Button>
           <Share2 /> Share
         </Button>
-        <Button variant="destructive" onClick={() => deleteWriting(writingID)}>
-          Delete
-        </Button>
+        <DeleteAlert deleteWriting={deleteWriting} writingID={writingID} />
       </CardFooter>
     </Card>
   );
 }
+

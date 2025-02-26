@@ -18,6 +18,7 @@ import {
   BookOpenText,
   Settings,
   CircleUserRound,
+  CircleGauge,
   Trophy,
   Award,
 } from "lucide-react";
@@ -36,6 +37,14 @@ import {
 const data = {
 
 navMain: [
+    {
+      title: "Your Dashboard",
+      url: "/userDashboard",
+      icon: CircleGauge,
+      isActive: true,
+      
+    },
+
     {
       title: "Your Library",
       url: "/userLibrary",
