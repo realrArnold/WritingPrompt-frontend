@@ -39,7 +39,7 @@ const Navigation = () => {
         <button onClick={toggleMenu}>
           {isOpen ? <X size={30} /> : <Menu size={30} />}
         </button>
-        {/* <h1 className="text-2xl font-bold text-blue-500 ml-auto">Writing Prompt App</h1> */}
+        <h1 className="text-2xl font-bold text-blue-500 ml-auto">Login/Sign Up</h1>
         
         {isOpen && (
           <div className="fixed inset-0 bg-white bg-opacity-100 z-40 flex flex-col items-start transition-all duration-300 p-4 w-64">
