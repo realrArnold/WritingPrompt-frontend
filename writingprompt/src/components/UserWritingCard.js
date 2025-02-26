@@ -18,6 +18,18 @@ import {
 } from "@/components/ui/select";
 import { Share2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+
 
 export default function UserWritingCard({ client, words, writingPrompt, title, genre, date, writingID, deleteWriting }) {
   const [data, setData] = useState({
@@ -197,10 +209,33 @@ export default function UserWritingCard({ client, words, writingPrompt, title, g
         <Button>
           <Share2 /> Share
         </Button>
-        <Button variant="destructive" onClick={() => deleteWriting(writingID)}>
-          Delete
-        </Button>
+        <AlertDialogDemo deleteWriting={deleteWriting} writingID={writingID} />
       </CardFooter>
     </Card>
+  );
+}
+
+export function AlertDialogDemo({ deleteWriting, writingID }) {
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button variant="destructive">
+          Delete
+        </Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogDescription>
+            This action cannot be undone. This will permanently delete your
+            writing.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction onClick={() => deleteWriting(writingID)}>Continue</AlertDialogAction>
+        </AlertDialogFooter>
+        </AlertDialogContent>
+    </AlertDialog>
   );
 }
