@@ -147,11 +147,15 @@ export function ChartComponentLiveData({ userWriting }) {
                   className="w-[150px]"
                   nameKey={activeChart === "monthlyCount" ? "Monthly Writings" : "Yearly Writings"}
                   labelFormatter={(value) => {
-                    return new Date(value).toLocaleDateString("en-GB", {
-                      day: "numeric",
-                      month: "short",
-                      year: "numeric",
-                    });
+                    if (activeChart === "monthlyCount") {
+                      return new Date(value).toLocaleDateString("en-GB", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                      });
+                    } else {
+                      return value;
+                    }
                   }}
                 />
               }
