@@ -18,18 +18,7 @@ import {
 } from "@/components/ui/select";
 import { Share2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-
+import DeleteAlert from "@/components/DeleteAlert";
 
 export default function UserWritingCard({ client, words, writingPrompt, title, genre, date, writingID, deleteWriting }) {
   const [data, setData] = useState({
@@ -75,6 +64,12 @@ export default function UserWritingCard({ client, words, writingPrompt, title, g
 
       if (response.status === 200) {
         setSuccessMessage("Title updated!");
+
+        // Clear the title input field
+        setData((prevData) => ({
+          ...prevData,
+          title: "",
+        }));
        
 
           // Clear the success message after 30 seconds
@@ -104,6 +99,12 @@ export default function UserWritingCard({ client, words, writingPrompt, title, g
 
       if (response.status === 200) {
         setSuccessGenreMessage("Genre updated!");
+
+         // Clear the genre input field
+         setData((prevData) => ({
+          ...prevData,
+          genre: "No genre",
+        }));
        
 
           // Clear the success message after 30 seconds
@@ -209,33 +210,9 @@ export default function UserWritingCard({ client, words, writingPrompt, title, g
         <Button>
           <Share2 /> Share
         </Button>
-        <AlertDialogDemo deleteWriting={deleteWriting} writingID={writingID} />
+        <DeleteAlert deleteWriting={deleteWriting} writingID={writingID} />
       </CardFooter>
     </Card>
   );
 }
 
-export function AlertDialogDemo({ deleteWriting, writingID }) {
-  return (
-    <AlertDialog>
-      <AlertDialogTrigger asChild>
-        <Button variant="destructive">
-          Delete
-        </Button>
-      </AlertDialogTrigger>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-          <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete your
-            writing.
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={() => deleteWriting(writingID)}>Continue</AlertDialogAction>
-        </AlertDialogFooter>
-        </AlertDialogContent>
-    </AlertDialog>
-  );
-}
