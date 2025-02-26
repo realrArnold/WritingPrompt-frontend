@@ -56,7 +56,7 @@ navMain: [
   ],
 };
 
-export function DBoardAppSidebar({ ...props }) {
+export function DBoardAppSidebar({ userWritingsCount, ...props }) {
   // to display username of who is logged in
   const [userData, setUserData] = React.useState({
     name: "",
@@ -88,7 +88,6 @@ export function DBoardAppSidebar({ ...props }) {
 
   }, []);
 
-export function DBoardAppSidebar({ userWritingsCount, ...props }) {
 
   return (
     <Sidebar collapsible="icon" {...props}>
