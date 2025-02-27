@@ -3,24 +3,10 @@
 import * as React from "react";
 import Image from "next/image";
 import {
-  AudioWaveform,
-  BookOpen,
-  Bot,
-  Command,
-  Frame,
-  GalleryVerticalEnd,
-  Map,
-  PieChart,
-  Settings2,
-  SquareTerminal,
-  Star,
   LibraryBig,
-  BookOpenText,
   Settings,
-  CircleUserRound,
   CircleGauge,
   Trophy,
-  Award,
 } from "lucide-react";
 
 import { NavMain } from "@/components/DBoard-nav-main";
