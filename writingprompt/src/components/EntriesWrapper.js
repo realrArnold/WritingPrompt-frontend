@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import EntriesCard from "./EntriesCard";
 
+
 const Page = ({ client, filters, genres }) => {
   const [allWritings, setAllWritings] = useState([]); // Full dataset (always remains untouched)
   const [Writings, setWritings] = useState([]); // Filtered dataset
@@ -63,9 +64,10 @@ const Page = ({ client, filters, genres }) => {
           key={writing._id}
           title={writing.title}
           words={writing.words}
-          writingPrompt={writing.prompt}
+          writingPrompt={writing.writingPrompt}
           genre={writing.genre}
-          date={writing.date}
+          date={new Date(writing.createdAt).toLocaleDateString("en-GB",)}
+          user = {writing.username}
         />
       ))}
     </div>
