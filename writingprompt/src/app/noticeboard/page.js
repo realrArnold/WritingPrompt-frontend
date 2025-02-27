@@ -10,7 +10,7 @@ const Noticeboard = () => {
     const client = new ApiClient(); // Initialize  client
     const [filters, setFilters] = useState([])
     const [genres, setGenres] = useState([])
-
+    
     useEffect(() => {
       console.log(filters)
     }, [filters])
