@@ -10,6 +10,7 @@ const Page = ({ client, filters, genres }) => {
     try {
       const data = await client.getWritings();
       setAllWritings(data.data); // Save original list
+      console.log(data.data)
       setWritings(data.data); // Initially, show all
     } catch (error) {
       console.error("Failed to fetch data:", error);
@@ -66,8 +67,8 @@ const Page = ({ client, filters, genres }) => {
           words={writing.words}
           writingPrompt={writing.writingPrompt}
           genre={writing.genre}
+          user={writing?.writtenBy?.username}
           date={new Date(writing.createdAt).toLocaleDateString("en-GB",)}
-          user = {writing.username}
         />
       ))}
     </div>

@@ -4,7 +4,7 @@
 import { useState, useEffect } from "react";
 import React from 'react'
 
-export default function EntriesCard({ title, words, writingPrompt, genre, date, user }) {
+export default function EntriesCard({ title, words, writingPrompt, genre, date, user}) {
   const [showFullText, setShowFullText] = useState(false);
 
   const toggleTextDisplay = () => {
@@ -23,11 +23,19 @@ export default function EntriesCard({ title, words, writingPrompt, genre, date, 
         <p className="text-gray-600 font-medium">{genre || ""}</p>
         <p className="text-black">
           
-        {showFullText ? words : (
-            <>
-              {words.substring(0, 150)}"...""
-              <span className="text-blue-500"> <br></br> read more</span>
-            </>
+        {words.length > 150 ? (
+            showFullText ? (
+              <>
+                {words}
+              </>
+            ) : (
+              <>
+                {words.substring(0, 150)}"..."
+                <span className="text-blue-500"> <br></br> read more</span>
+              </>
+            )
+          ) : (
+            words
           )}
         </p>
         <p className="text-gray-600">{date}</p>
