@@ -23,6 +23,8 @@ const Signup = () => {
     console.log(password)
 
     try {
+// for local testing
+      // const response = await fetch("http://localhost:3001/users/create", {
 
       const response = await fetch("https://writingprompt-backend.onrender.com/users/create", {
 
