@@ -27,7 +27,7 @@ const Login = () => {
   return (
     
     <div className="flex justify-center items-center min-h-screen bg-white">
-  <form onSubmit={submitHandler} className="border-2 border-pink-700 p-6 rounded-lg shadow-lg w-96">
+  <form onSubmit={submitHandler} className="border-2 border-violet-400 p-6 rounded-lg shadow-lg w-96">
     <div className="mb-4">
       <label htmlFor="username" className="block text-[#283618] text-lg font-medium mb-2">
         Username
@@ -38,7 +38,7 @@ const Login = () => {
         type="text" 
         placeholder="Enter your username"
         required 
-        className="w-full px-4 py-2 border border-pink-700 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 bg-white"
+        className="w-full px-4 py-2 border border-violet-700 rounded-md focus:outline-none focus:ring-2 focus:ring-violet-600 bg-white"
       />
     </div>
     <div className="mb-6">
@@ -51,20 +51,20 @@ const Login = () => {
         type="password" 
         placeholder="Enter your password"
         required 
-        className="w-full px-4 py-2 border border-pink-700 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 bg-white"
+        className="w-full px-4 py-2 border border-violet-700 rounded-md focus:outline-none focus:ring-2 focus:ring-violet-600 bg-white"
       />
     </div>
     <button 
       type="submit" 
       disabled={disabled} 
-      className={`w-full py-2 rounded-md text-white font-semibold ${disabled ? 'bg-[#DDA15E]' : 'bg-blue-500 hover:bg-blue-600'}`}
+      className={`w-full py-2 rounded-md text-violet-600 font-semibold ${disabled ? 'bg-gray-300' : 'bg-indigo-100 hover:bg-indigo-200'}`}
     >
       {disabled ? "Signing in..." : "Sign in"}
     </button>
   
     <button
         onClick={() => router.push("/signup")}
-        className="w-full mt-4 px-4 py-2 bg-blue-300 text-white rounded-lg hover:bg-blue-400 transition"
+        className="w-full mt-4 px-4 py-2 bg-indigo-400 text-white rounded-lg hover:bg-indigo-500 transition"
       >
         Create an account
       </button>

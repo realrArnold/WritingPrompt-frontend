@@ -55,13 +55,13 @@ const Navigation = () => {
           <div className="ml-auto flex space-x-4">
             <button
               onClick={() => router.push("/login")}
-              className="text-2xl font-bold text-blue-500"
+              className="text-2xl font-bold text-violet-500"
             >
               Login
             </button>
             <button
               onClick={() => router.push("/signup")}
-              className="text-2xl font-bold text-blue-500"
+              className="text-2xl font-bold text-violet-500"
             >
               Sign Up
             </button>
