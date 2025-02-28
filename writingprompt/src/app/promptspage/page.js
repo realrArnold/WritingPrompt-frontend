@@ -25,11 +25,6 @@ const Home = () => {
         client={client}
         writingPrompt={writingPrompt}
       />
-<div>
-        <EntriesWrapper
-        client={client}/>
-
-      </div>
     </div>
   );
 };
