@@ -73,11 +73,11 @@ export function NavUser({ user }) {
               <Avatar className="h-8 w-8 rounded-lg">
                 {isLoggedIn && user?.avatar ? (
                   <AvatarImage src={user.avatar} alt={user.name} />
-                ) : (
+                ) : null }
                   <AvatarFallback className="rounded-lg">
                     <CircleUserRound />
                   </AvatarFallback>
-                )}
+              
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 {isLoggedIn ? (
