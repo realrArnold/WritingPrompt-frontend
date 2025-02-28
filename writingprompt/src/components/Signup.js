@@ -23,7 +23,10 @@ const Signup = () => {
     console.log(password)
 
     try {
-      const response = await fetch("http://localhost:3001/users/create" || "https://writing-prompt-frontend.vercel.app/", {
+
+      const response = await fetch("http://localhost:3001/users/create" || "https://writingprompt-backend.onrender.com/users/create", {
+
+    
         method: "POST",
         headers: {
           "Content-Type": "application/json",
