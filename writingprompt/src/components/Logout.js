@@ -10,8 +10,8 @@ const LogoutButton = () => {
     setIsLoggingOut(true);
     const success = await apiClient.logout(); // Call the logout method
     if (success) {
-      // Redirect to login page or perform any necessary actions after logout
-      window.location.href = "/login";  // You can also use router.push('/login') if using Next.js
+      // Redirect to login page after logout
+      window.location.href = "/login";  
     } else {
       alert("Logout failed. Please try again.");
     }
