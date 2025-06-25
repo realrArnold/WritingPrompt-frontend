@@ -1,6 +1,12 @@
 import axios from "axios";
 // const url = "http://localhost:3001/";
-const url = "https://writingprompt-backend.onrender.com/";
+// Set to true to use your backend, false for the original
+const useMyBackend = true;
+
+const url = useMyBackend
+  ? "https://writingprompt-backend-vdx3.onrender.com/"
+  : "https://writingprompt-backend.onrender.com/";
+
 
 //3001 because back end runs on 3001, front end runs on 3000
 
